@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:ecommerce_mobile/screens/product/search_page.dart';
 void main() {
   runApp(const MyApp());
 }
@@ -35,7 +36,7 @@ class _MyHomePageState extends State<MyHomePage> {
   final searchController=TextEditingController();
   List<dynamic> items=[];
   Future<void> getItems() async{
-    var res=await http.get(Uri.parse('http://127.0.0.1:8001/videos'));
+    var res=await http.get(Uri.parse('http://127.0.0.1:8001/api/videos'));
     items=jsonDecode(res.body);
   } 
   
@@ -70,7 +71,7 @@ class _MyHomePageState extends State<MyHomePage> {
         actions:[
           IconButton(
             onPressed: (){
-              Navigator.of(context).push(MaterialPageRoute(builder:(context)=>SearchPage(),settings:RouteSettings(arguments:{searchQuery:searchController.text})));
+              Navigator.of(context).push(MaterialPageRoute(builder:(context)=>SearchPage(),settings:RouteSettings(arguments:{searchController.text})));
             },
             icon:Icon(Icons.search)
           ),
