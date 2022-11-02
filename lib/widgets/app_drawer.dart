@@ -1,3 +1,4 @@
+import 'package:ecommerce_mobile/screens/auth/login.dart';
 import 'package:flutter/material.dart';
 
 class AppDrawer extends StatefulWidget {
@@ -34,7 +35,7 @@ class _AppDrawerState extends State<AppDrawer> {
             title: Text('login'),
             leading: Icon(Icons.login),
             onTap: () => {
-
+              Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Login()))
             },
           ),
           ListTile(
