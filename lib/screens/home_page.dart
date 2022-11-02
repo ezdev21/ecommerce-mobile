@@ -1,20 +1,25 @@
 import 'package:flutter/material.dart';
-import 'dart:convert';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'package:ecommerce_mobile/screens/product/search_page.dart';
+import 'package:ecommerce_mobile/widgets/app_drawer.dart';
 
-class SearchPage extends StatefulWidget {
-  const SearchPage({super.key});
+
+class HomePage extends StatefulWidget {
+  const HomePage({super.key, required this.title});
+
+  final String title;
 
   @override
-  State<SearchPage> createState() => _SearchPageState();
+  State<HomePage> createState() => _HomePageState();
 }
 
-class _SearchPageState extends State<SearchPage> {
+class _HomePageState extends State<HomePage> {
+  final searchController=TextEditingController();
   List<dynamic> items=[];
-
   Future<void> getItems() async{
-    var res=await http.get(Uri.parse('http://127.0.0.1:8001/api/products/search'));
+    var res=await http.get(Uri.parse('http://127.0.0.1:8001/api/products'));
     items=jsonDecode(res.body);
   } 
   
@@ -25,9 +30,38 @@ class _SearchPageState extends State<SearchPage> {
   }
 
   @override
+  void dispose() {
+    searchController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Container(
-      child: items.length==0 ?
+    return Scaffold(
+      drawer: AppDrawer(),
+      backgroundColor: Colors.grey[200],
+      appBar: AppBar(
+        backgroundColor: Color(0Xff43db80),
+        title: TextField(
+            controller: searchController,
+            decoration: InputDecoration(
+              labelText:'I am looking for',
+              fillColor:Colors.white,
+              filled: true,
+              hintText: 'I am looking for...'
+            ),
+          ),
+        centerTitle: true,
+        actions:[
+          IconButton(
+            onPressed: (){
+              Navigator.of(context).push(MaterialPageRoute(builder:(context)=>SearchPage(),settings:RouteSettings(arguments:{searchController.text})));
+            },
+            icon:Icon(Icons.search)
+          ),
+        ]
+      ),
+      body: items.length==0 ?
       const Center(
         child: SpinKitFadingCube(
           size:140,
