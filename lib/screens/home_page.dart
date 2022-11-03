@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:http/http.dart' as http;
+import 'package:dio/dio.dart';
 import 'dart:convert';
 import 'package:ecommerce_mobile/screens/product/search_page.dart';
 import 'package:ecommerce_mobile/widgets/app_drawer.dart';
@@ -17,8 +17,8 @@ class _HomePageState extends State<HomePage> {
   final searchController=TextEditingController();
   List<dynamic> items=[];
   Future<void> getItems() async{
-    var res=await http.get(Uri.parse('http://127.0.0.1:8001/api/products'));
-    items=jsonDecode(res.body);
+    var res=await Dio().get('/products');
+    items=jsonDecode(res.data);
   } 
   
   @override
