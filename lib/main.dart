@@ -1,7 +1,16 @@
+import 'package:ecommerce_mobile/services/auth.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommerce_mobile/screens/home_page.dart';
+import 'package:provider/provider.dart';
 void main() {
-  runApp(const MyApp());
+  runApp(
+    MultiProvider(
+      providers:[
+        ChangeNotifierProvider(create: (context)=>Auth())
+      ],
+      child: const MyApp()
+    )
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -15,7 +24,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.green,
       ),
-      home: const HomePage(title: 'Ecommerce'),
+      home: const HomePage(),
     );
   }
 }
