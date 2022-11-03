@@ -1,10 +1,12 @@
+import 'package:ecommerce_mobile/services/auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:dio/dio.dart';
 import 'dart:convert';
 import 'package:ecommerce_mobile/screens/product/search_page.dart';
 import 'package:ecommerce_mobile/widgets/app_drawer.dart';
-
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -14,17 +16,25 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final storage = new FlutterSecureStorage();
   final searchController=TextEditingController();
   List<dynamic> items=[];
-  Future<void> getItems() async{
+
+  @override
+  void initState() {
+    readToken();
+    getProducts();
+    super.initState();
+  }
+
+  Future<void> getProducts() async{
     var res=await Dio().get('/products');
     items=jsonDecode(res.data);
   } 
   
-  @override
-  void initState() {
-    getItems();
-    super.initState();
+  void readToken() async{
+    String? token=await storage.read(key: 'token');
+    Provider.of<Auth>(context,listen: false).tryToken(token);
   }
 
   @override
