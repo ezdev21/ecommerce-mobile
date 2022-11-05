@@ -16,7 +16,7 @@ class Auth extends ChangeNotifier{
   
   void login(Map creds) async{
     try {
-     Dio.Response res=await Dio().post('/sanctum/token',data:creds);
+     var res=await Dio().post('/sanctum/token',data:creds);
      token=res.data.toString();
      tryToken(token);
      logged=true; 
@@ -32,7 +32,7 @@ class Auth extends ChangeNotifier{
     }
     else{
       try{
-        Dio.Response res=await Dio().get(
+        var res=await Dio().get(
           '/user',
           options:Dio.Options(headers:{'Authorization':'Bearer $token'})
         );
@@ -53,7 +53,7 @@ class Auth extends ChangeNotifier{
 
   void logout() async{
     try{
-      Dio.Response res=await Dio().get('/user/revoke',options:Dio.Options(headers:{'Authorization':'Bearer $token'}));
+      var res=await Dio().get('/user/revoke',options:Dio.options(headers:{'Authorization':'Bearer $token'}));
       cleanUp();
       notifyListeners(); 
     }catch(e){

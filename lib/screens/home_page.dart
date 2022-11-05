@@ -1,3 +1,4 @@
+import 'package:ecommerce_mobile/screens/product/product_show.dart';
 import 'package:ecommerce_mobile/services/auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -76,29 +77,35 @@ class _HomePageState extends State<HomePage> {
           color: Color(0Xff43db80)
         )
       )
-      :ListView.builder(
+      : ListView.builder(
         itemCount: items.length,
         itemBuilder: (context,index){
-          return Container(
-            child:Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Image.network('https://cdn.pixabay.com/photo/2022/09/26/23/26/african-american-7481724_960_720.jpg'),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Text('item title',style:TextStyle(fontSize:17,fontWeight: FontWeight.w600)),
-                    Text('item.description',style:TextStyle(fontSize:15,color: Colors.grey[600]))
-                  ]
-                )
-              ]
+          return GestureDetector(
+            onTap: (){
+              var product=items[index];
+              Navigator.of(context).push(MaterialPageRoute(builder:(context)=>ProductShow(),settings:RouteSettings(arguments:{product})));
+            },
+            child: Container(
+              child:Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Image.network('https://cdn.pixabay.com/photo/2022/09/26/23/26/african-american-7481724_960_720.jpg'),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text('item title',style:TextStyle(fontSize:17,fontWeight: FontWeight.w600)),
+                      Text('item.description',style:TextStyle(fontSize:15,color: Colors.grey[600]))
+                    ]
+                  )
+                ]
+              ),
+              padding: EdgeInsets.all(5),
+              margin: EdgeInsets.all(5),
+              decoration: BoxDecoration(
+                color:Colors.white,
+                borderRadius: BorderRadius.circular(5)
+              ), 
             ),
-            padding: EdgeInsets.all(5),
-            margin: EdgeInsets.all(5),
-            decoration: BoxDecoration(
-              color:Colors.white,
-              borderRadius: BorderRadius.circular(5)
-            ), 
           );
         },
       )
