@@ -9,12 +9,12 @@ class ProductShow extends StatefulWidget {
 }
 
 class _ProductShowState extends State<ProductShow> {
-  final product=ModalRoute.of(context).settings.arguments;
+  //dynamic product=ModalRoute.of(context).settings.arguments;
   bool like=false;
   bool dislike=false;
   
   void likeProduct() async{
-    dio().post('/product/${product.id}/like',data: {'userId':'${user.id}','productId':'${product.id}','type':'like'});
+    //dio().post('/product/${product.id}/like',data: {'userId':'${user.id}','productId':'${product.id}','type':'like'});
     like=!like;
     if(dislike){
       dislike=false;
@@ -22,7 +22,7 @@ class _ProductShowState extends State<ProductShow> {
   }
   
   void dislikeProduct() async{
-    dio().post('/product/${product.id}/like',data: {'userId':'${user.id}','productId':'${product.id}','type':'dislike'});
+    //dio().post('/product/${product.id}/like',data: {'userId':'${user.id}','productId':'${product.id}','type':'dislike'});
     dislike=!dislike;
     if(like){
       like=false;
@@ -34,10 +34,10 @@ class _ProductShowState extends State<ProductShow> {
     return Container(
       child: Column(
         children: [
-          Image.network('${product.image}'),
+          //Image.network('${product.image}'),
           SizedBox(height: 10),
-          Text('${product.title}'),
-          Text('${product.description}'),
+          //Text('${product.title}'),
+          //Text('${product.description}'),
           Row(children: [
             IconButton(
               onPressed: (){
@@ -45,7 +45,7 @@ class _ProductShowState extends State<ProductShow> {
               },
               icon: Icon(Icons.thumb_up)
             ),
-            Text('${product.totalLikes}'),
+            //Text('${product.totalLikes}'),
             SizedBox(width: 20,),
             IconButton(
               onPressed: (){
@@ -53,7 +53,7 @@ class _ProductShowState extends State<ProductShow> {
               },
               icon: Icon(Icons.thumb_down)
             ),
-            Text('${product.totalDislikes}'),
+            //Text('${product.totalDislikes}'),
           ],)
         ],
       ),

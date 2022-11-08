@@ -71,11 +71,19 @@ class _HomePageState extends State<HomePage> {
         ]
       ),
       body: items.length==0 ?
-      const Center(
-        child: SpinKitFadingCube(
-          size:140,
-          color: Color(0Xff43db80)
-        )
+      Padding(
+        padding:EdgeInsets.only(top: 30),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Text('Welcome to Ecommerce',style: TextStyle(color: Colors.grey[600], fontSize: 30, fontFamily: 'Pacifico'),),
+            SizedBox(height: 50,),
+            SpinKitFadingCube(
+              size:140,
+              color: Color(0Xff43db80)
+            ),
+          ],
+        ),
       )
       : ListView.builder(
         itemCount: items.length,

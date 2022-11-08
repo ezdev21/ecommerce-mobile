@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:ecommerce_mobile/models/user.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'dart:io';
-import 'package:device_info_plus/device_info_plus.dart';
+//import 'package:device_info_plugin/device_info_plugin.dart';
 
 class Auth extends ChangeNotifier{
-  User user;
+  var user;
   bool logged=false;
-  String token;
+  var token;
   final storage = new FlutterSecureStorage();
 
   bool get authenticated => logged;
@@ -34,11 +34,11 @@ class Auth extends ChangeNotifier{
       try{
         var res=await Dio().get(
           '/user',
-          options:Dio.Options(headers:{'Authorization':'Bearer $token'})
+          //options:Dio.Options(headers:{'Authorization':'Bearer $token'})
         );
-        this.logged=true;
-        this.user=User.fromJson(res.data);
-        this.token=token;
+        logged=true;
+        user=User.fromJson(res.data);
+        token=token;
         storeToken(token);
         notifyListeners(); 
       }catch(e){
@@ -53,7 +53,7 @@ class Auth extends ChangeNotifier{
 
   void logout() async{
     try{
-      var res=await Dio().get('/user/revoke',options:Dio.options(headers:{'Authorization':'Bearer $token'}));
+      //var res=await Dio().get('/user/revoke',options:Dio.options(headers:{'Authorization':'Bearer $token'}));
       cleanUp();
       notifyListeners(); 
     }catch(e){
@@ -70,18 +70,18 @@ class Auth extends ChangeNotifier{
 
   getDeviceInfo() async{
     String device_name='';
-    if(Platform.isAndroid){
-      DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
-      AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
-      device_name=androidInfo.model;
-    }
-    else if(Platform.isIOS){
-      IosDeviceInfo iosInfo = await deviceInfo.iosInfo;
-      device_name=iosInfo.utsname.machine;
-    }
-    else{
-      device_name='unknown';
-    }
+    // if(Platform.isAndroid){
+    //   var deviceInfo = DeviceInfoPlugin();
+    //   var androidInfo = await deviceInfo.androidInfo;
+    //   device_name=androidInfo.model;
+    // }
+    // else if(Platform.isIOS){
+    //   IosDeviceInfo iosInfo = await deviceInfo.iosInfo;
+    //   device_name=iosInfo.utsname.machine;
+    // }
+    // else{
+    //   device_name='unknown';
+    // }
     return device_name;
   }
 }
