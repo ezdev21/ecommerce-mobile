@@ -1,3 +1,5 @@
+import 'package:ecommerce_mobile/widgets/app_drawer.dart';
+import 'package:ecommerce_mobile/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:ecommerce_mobile/services/auth.dart';
@@ -52,93 +54,100 @@ class _PasswordResetState extends State<PasswordReset> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Center(
-        child: Column(
-          if(!confirmed){
-            children:[
-            Text('Enter Confirmation Code',style:TextStyle(fontSize:25)),
-            SizedBox(height: 10),
-            !emailSent ?
-            TextFormField(
-              controller: emailController,
-              decoration: InputDecoration(
-                labelText: 'email',
-                hintText: 'jhondoe@gmail.com',
-                fillColor:Colors.white,
-                filled:true,
-                contentPadding: EdgeInsets.all(3),
-                enabledBorder: OutlineInputBorder(
-                  borderSide:BorderSide(width: 2,color: Colors.grey.shade400),
-                  borderRadius:BorderRadius.circular(5)
+    return Scaffold(
+      drawer: AppDrawer(),
+      backgroundColor: Colors.grey[200],
+      appBar: CustomAppBar(),
+      body: Container(
+        child: Center(
+          child: Column(
+            if(!confirmed){
+              children:[
+              Text('Enter Confirmation Code',style:TextStyle(fontSize:25)),
+              SizedBox(height: 10),
+              !emailSent ?
+              TextFormField(
+                controller: emailController,
+                decoration: InputDecoration(
+                  labelText: 'email',
+                  hintText: 'jhondoe@gmail.com',
+                  fillColor:Colors.white,
+                  filled:true,
+                  contentPadding: EdgeInsets.all(3),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide:BorderSide(width: 2,color: Colors.grey.shade400),
+                    borderRadius:BorderRadius.circular(5)
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide:BorderSide(width: 2,color: Color(0xffdc143d)),
+                    borderRadius:BorderRadius.circular(5)
+                  ),
                 ),
-                focusedBorder: OutlineInputBorder(
-                  borderSide:BorderSide(width: 2,color: Color(0xffdc143d)),
-                  borderRadius:BorderRadius.circular(5)
-                ),
-              ),
-            )
-            :TextFormField(
-              controller: confirmationCodeController,
-              decoration: InputDecoration(
-                labelText: 'code',
-                hintText: '',
-                fillColor:Colors.white,
-                filled:true,
-                contentPadding: EdgeInsets.all(3),
-                enabledBorder: OutlineInputBorder(
-                  borderSide:BorderSide(width: 2,color: Colors.grey.shade400),
-                  borderRadius:BorderRadius.circular(5)
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderSide:BorderSide(width: 2,color: Color(0xffdc143d)),
-                  borderRadius:BorderRadius.circular(5)
-                ),
-              ),
-            ),
-            ]
-          }
-          else{
-            children: [
-            TextFormField(
-              controller: passwordController,
-              decoration: InputDecoration(
-                labelText: 'password',
-                hintText: '********',
-                fillColor:Colors.white,
-                filled:true,
-                contentPadding: EdgeInsets.all(3),
-                enabledBorder: OutlineInputBorder(
-                  borderSide:BorderSide(width: 2,color: Colors.grey.shade400),
-                  borderRadius:BorderRadius.circular(5)
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderSide:BorderSide(width: 2,color: Color(0xffdc143d)),
-                  borderRadius:BorderRadius.circular(5)
+              )
+              :TextFormField(
+                controller: confirmationCodeController,
+                decoration: InputDecoration(
+                  labelText: 'code',
+                  hintText: '',
+                  fillColor:Colors.white,
+                  filled:true,
+                  contentPadding: EdgeInsets.all(3),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide:BorderSide(width: 2,color: Colors.grey.shade400),
+                    borderRadius:BorderRadius.circular(5)
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide:BorderSide(width: 2,color: Color(0xffdc143d)),
+                    borderRadius:BorderRadius.circular(5)
+                  ),
                 ),
               ),
-            ),
-            SizedBox(height:30),
-            TextFormField(
-              controller: passwordConfirmationController,
-              decoration: InputDecoration(
-                labelText: 'password confirmation',
-                hintText: '********',
-                fillColor:Colors.white,
-                filled:true,
-                contentPadding: EdgeInsets.all(3),
-                enabledBorder: OutlineInputBorder(
-                  borderSide:BorderSide(width: 2,color: Colors.grey.shade400),
-                  borderRadius:BorderRadius.circular(5)
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderSide:BorderSide(width: 2,color: Color(0xffdc143d)),
-                  borderRadius:BorderRadius.circular(5)
+              ]
+            }
+            else{
+              children: [
+              TextFormField(
+                controller: passwordController,
+                obscureText:true,
+                decoration: InputDecoration(
+                  labelText: 'password',
+                  hintText: '********',
+                  fillColor:Colors.white,
+                  filled:true,
+                  contentPadding: EdgeInsets.all(3),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide:BorderSide(width: 2,color: Colors.grey.shade400),
+                    borderRadius:BorderRadius.circular(5)
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide:BorderSide(width: 2,color: Color(0xffdc143d)),
+                    borderRadius:BorderRadius.circular(5)
+                  ),
                 ),
               ),
-            ),
-            ], 
-          }
+              SizedBox(height:30),
+              TextFormField(
+                controller: passwordConfirmationController,
+                obscureText:true,
+                decoration: InputDecoration(
+                  labelText: 'password confirmation',
+                  hintText: '********',
+                  fillColor:Colors.white,
+                  filled:true,
+                  contentPadding: EdgeInsets.all(3),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide:BorderSide(width: 2,color: Colors.grey.shade400),
+                    borderRadius:BorderRadius.circular(5)
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide:BorderSide(width: 2,color: Color(0xffdc143d)),
+                    borderRadius:BorderRadius.circular(5)
+                  ),
+                ),
+              ),
+              ], 
+            }
+          ),
         ),
       ),
     );

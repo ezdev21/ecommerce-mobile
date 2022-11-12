@@ -1,6 +1,5 @@
 import 'package:ecommerce_mobile/screens/auth/login.dart';
 import 'package:ecommerce_mobile/screens/auth/register.dart';
-import 'package:ecommerce_mobile/screens/home_page.dart';
 import 'package:ecommerce_mobile/services/auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

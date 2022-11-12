@@ -1,10 +1,10 @@
 import 'package:ecommerce_mobile/screens/product/product_show.dart';
 import 'package:ecommerce_mobile/services/auth.dart';
+import 'package:ecommerce_mobile/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:dio/dio.dart';
 import 'dart:convert';
-import 'package:ecommerce_mobile/screens/product/search_page.dart';
 import 'package:ecommerce_mobile/widgets/app_drawer.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:provider/provider.dart';
@@ -49,27 +49,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       drawer: AppDrawer(),
       backgroundColor: Colors.grey[200],
-      appBar: AppBar(
-        backgroundColor: Color(0Xff43db80),
-        title: TextField(
-            controller: searchController,
-            decoration: InputDecoration(
-              labelText:'I am looking for',
-              fillColor:Colors.white,
-              filled: true,
-              hintText: 'I am looking for...'
-            ),
-          ),
-        centerTitle: true,
-        actions:[
-          IconButton(
-            onPressed: (){
-              Navigator.of(context).push(MaterialPageRoute(builder:(context)=>SearchPage(),settings:RouteSettings(arguments:{searchController.text})));
-            },
-            icon:Icon(Icons.search)
-          ),
-        ]
-      ),
+      appBar: CustomAppBar(),
       body: items.length==0 ?
       Padding(
         padding:EdgeInsets.only(top: 30),

@@ -1,4 +1,5 @@
 import 'package:ecommerce_mobile/services/auth.dart';
+import 'package:ecommerce_mobile/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -25,6 +26,7 @@ class _LoginState extends State<Login> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey[200],
+      appBar: CustomAppBar(),
       body: Center(
         child: Padding(
           padding: EdgeInsets.symmetric(vertical:30,horizontal:5),
@@ -32,7 +34,7 @@ class _LoginState extends State<Login> {
             key: formKey,
             child: Column(
               children: [
-                Text('Login to Ecommerce',style: TextStyle(fontSize: 25),),
+                Text('Login to Ecommerce',style: TextStyle(color: Colors.grey[600],fontSize: 23,fontFamily: 'Pacifico'),),
                 SizedBox(height: 30),
                 TextFormField(
                   controller: emailController,
@@ -55,6 +57,7 @@ class _LoginState extends State<Login> {
                 SizedBox(height:30),
                 TextFormField(
                   controller: passwordController,
+                  obscureText:true,
                   decoration: InputDecoration(
                     labelText: 'password',
                     hintText: '********',

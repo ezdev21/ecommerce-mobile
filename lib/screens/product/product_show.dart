@@ -1,3 +1,4 @@
+import 'package:ecommerce_mobile/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommerce_mobile/services/dio.dart';
 
@@ -31,31 +32,35 @@ class _ProductShowState extends State<ProductShow> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        children: [
-          //Image.network('${product.image}'),
-          SizedBox(height: 10),
-          //Text('${product.title}'),
-          //Text('${product.description}'),
-          Row(children: [
-            IconButton(
-              onPressed: (){
-               likeProduct();
-              },
-              icon: Icon(Icons.thumb_up)
-            ),
-            //Text('${product.totalLikes}'),
-            SizedBox(width: 20,),
-            IconButton(
-              onPressed: (){
-                dislikeProduct();
-              },
-              icon: Icon(Icons.thumb_down)
-            ),
-            //Text('${product.totalDislikes}'),
-          ],)
-        ],
+    return Scaffold(
+      backgroundColor: Colors.grey[200],
+      appBar: CustomAppBar(),
+      body: Container(
+        child: Column(
+          children: [
+            //Image.network('${product.image}'),
+            SizedBox(height: 10),
+            //Text('${product.title}'),
+            //Text('${product.description}'),
+            Row(children: [
+              IconButton(
+                onPressed: (){
+                 likeProduct();
+                },
+                icon: Icon(Icons.thumb_up)
+              ),
+              //Text('${product.totalLikes}'),
+              SizedBox(width: 20,),
+              IconButton(
+                onPressed: (){
+                  dislikeProduct();
+                },
+                icon: Icon(Icons.thumb_down)
+              ),
+              //Text('${product.totalDislikes}'),
+            ],)
+          ],
+        ),
       ),
     );
   }

@@ -1,3 +1,4 @@
+import 'package:ecommerce_mobile/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 
 class Register extends StatefulWidget {
@@ -28,6 +29,7 @@ class _RegisterState extends State<Register> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey[200],
+      appBar: CustomAppBar(),
       body: Center(
         child: Padding(
           padding: EdgeInsets.symmetric(vertical:30,horizontal:5),
@@ -35,7 +37,7 @@ class _RegisterState extends State<Register> {
             key: formKey,
             child: Column(
               children: [
-                Text('Welcome to Ecommerce',style: TextStyle(fontSize: 25),),
+                Text('Register to Ecommerce',style: TextStyle(color: Colors.grey[600],fontSize: 23,fontFamily: 'Pacifico'),),
                 SizedBox(height: 30),
                 TextFormField(
                   controller: nameController,
@@ -77,6 +79,7 @@ class _RegisterState extends State<Register> {
                 SizedBox(height:30),
                 TextFormField(
                   controller: passwordController,
+                  obscureText:true,
                   decoration: InputDecoration(
                     labelText: 'password',
                     hintText: '********',
@@ -96,6 +99,7 @@ class _RegisterState extends State<Register> {
                 SizedBox(height:30),
                 TextFormField(
                   controller: passwordConfirmationController,
+                  obscureText:true,
                   decoration: InputDecoration(
                     labelText: 'password confirmation',
                     hintText: '********',
