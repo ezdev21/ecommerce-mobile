@@ -14,14 +14,22 @@ class Auth extends ChangeNotifier{
   bool get authenticated => logged;
   User get getUser => user;
   
+  void register(Map creds) async{
+    try{
+      var res=Dio().post('sanctum/register',data:creds);
+    }catch(e){
+      print(e);
+    }
+  }
+
   void login(Map creds) async{
     try {
-     var res=await Dio().post('/sanctum/token',data:creds);
+     var res=await Dio().post('/sanctum/login',data:creds);
      token=res.data.toString();
      tryToken(token);
      logged=true; 
     }catch(e){
-      
+      print(e);
     }
     notifyListeners();
   }
@@ -53,7 +61,7 @@ class Auth extends ChangeNotifier{
 
   void logout() async{
     try{
-      //var res=await Dio().get('/user/revoke',options:Dio.options(headers:{'Authorization':'Bearer $token'}));
+      var res=await Dio().get('/user/revoke',options:Options(headers:{'Authorization':'Bearer $token'}));
       cleanUp();
       notifyListeners(); 
     }catch(e){

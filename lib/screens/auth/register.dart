@@ -1,5 +1,7 @@
+import 'package:ecommerce_mobile/services/auth.dart';
 import 'package:ecommerce_mobile/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class Register extends StatefulWidget {
   const Register({super.key});
@@ -129,6 +131,9 @@ class _RegisterState extends State<Register> {
                       'password':passwordController.text,
                       'password_confirmation':passwordConfirmationController.text
                     };
+                    Provider.of<Auth>(context,listen:false).register(creds);
+                    Provider.of<Auth>(context,listen:false).login({'email':emailController.text,'password':passwordController.text});
+                    Navigator.of(context).pop();
                   },
                   child: Text('Register',style: TextStyle(fontSize: 18),),
                 )

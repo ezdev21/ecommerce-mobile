@@ -1,3 +1,4 @@
+import 'package:ecommerce_mobile/screens/auth/password_reset.dart';
 import 'package:ecommerce_mobile/services/auth.dart';
 import 'package:ecommerce_mobile/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
@@ -74,7 +75,14 @@ class _LoginState extends State<Login> {
                     ),
                   ),
                 ),
-                SizedBox(height: 30),
+                SizedBox(height: 10),
+                MaterialButton(
+                  textColor:Color(0Xff43db80),
+                  child: Text('forgot password?'),
+                  onPressed:() {
+                    Navigator.push(context,MaterialPageRoute(builder: (context)=>PasswordReset()));
+                  }
+                ),
                 MaterialButton(
                   minWidth: double.infinity,
                   height: 50,
