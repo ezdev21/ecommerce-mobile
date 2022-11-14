@@ -77,7 +77,10 @@ class _HomePageState extends State<HomePage> {
               child:Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Image.network('https://cdn.pixabay.com/photo/2022/09/26/23/26/african-american-7481724_960_720.jpg'),
+                  Image.network(
+                    'https://cdn.pixabay.com/photo/2022/09/26/23/26/african-american-7481724_960_720.jpg',
+                    fit: BoxFit.cover,
+                    ),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [

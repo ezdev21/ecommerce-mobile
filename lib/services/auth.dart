@@ -3,16 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:ecommerce_mobile/models/user.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'dart:io';
-//import 'package:device_info_plugin/device_info_plugin.dart';
+//import 'package:device_info_plus/device_info_plus.dart';
 
 class Auth extends ChangeNotifier{
-  var user;
+  late User? user;
   bool logged=false;
-  var token;
+  String? token='';
   final storage = new FlutterSecureStorage();
 
   bool get authenticated => logged;
-  User get getUser => user;
+  User? get getUser => user;
   
   void register(Map creds) async{
     try{
@@ -20,16 +20,16 @@ class Auth extends ChangeNotifier{
     }catch(e){
       print(e);
     }
-  }
+  } 
 
   void login(Map creds) async{
     try {
-     var res=await Dio().post('/sanctum/login',data:creds);
+     var res=await Dio().post('/sanctum/token',data:creds);
      token=res.data.toString();
      tryToken(token);
-     logged=true; 
+     logged=true;
     }catch(e){
-      print(e);
+      
     }
     notifyListeners();
   }
@@ -40,13 +40,10 @@ class Auth extends ChangeNotifier{
     }
     else{
       try{
-        var res=await Dio().get(
-          '/user',
-          //options:Dio.Options(headers:{'Authorization':'Bearer $token'})
-        );
-        logged=true;
-        user=User.fromJson(res.data);
-        token=token;
+        var res=await Dio().get('/user',options:Options(headers:{'Authorization':'Bearer $token'}));
+        this.logged=true;
+        this.user=User.fromJson(res.data);
+        this.token=token;
         storeToken(token);
         notifyListeners(); 
       }catch(e){
@@ -54,8 +51,8 @@ class Auth extends ChangeNotifier{
       }
     }
   }
-
-  void storeToken(String token){
+  
+  void storeToken(token){
     storage.write(key: 'token', value: token);   
   }
 
@@ -78,18 +75,18 @@ class Auth extends ChangeNotifier{
 
   getDeviceInfo() async{
     String device_name='';
-    // if(Platform.isAndroid){
-    //   var deviceInfo = DeviceInfoPlugin();
-    //   var androidInfo = await deviceInfo.androidInfo;
-    //   device_name=androidInfo.model;
-    // }
-    // else if(Platform.isIOS){
-    //   IosDeviceInfo iosInfo = await deviceInfo.iosInfo;
-    //   device_name=iosInfo.utsname.machine;
-    // }
-    // else{
-    //   device_name='unknown';
-    // }
+    if(Platform.isAndroid){
+      //DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
+      //AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
+      //device_name=androidInfo.model;
+    }
+    else if(Platform.isIOS){
+      //IosDeviceInfo iosInfo = await deviceInfo.iosInfo;
+      //device_name=iosInfo.utsname.machine;
+    }
+    else{
+      device_name='unknown';
+    }
     return device_name;
   }
 }

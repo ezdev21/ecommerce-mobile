@@ -1,5 +1,7 @@
 import 'package:ecommerce_mobile/screens/auth/login.dart';
 import 'package:ecommerce_mobile/screens/auth/register.dart';
+import 'package:ecommerce_mobile/screens/home_page.dart';
+import 'package:ecommerce_mobile/screens/product/product_create.dart';
 import 'package:ecommerce_mobile/services/auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -19,6 +21,20 @@ class _AppDrawerState extends State<AppDrawer> {
         return !auth.authenticated ?
         ListView(
           children: [
+            ListTile(
+              title: Text('create'),
+              leading: Icon(Icons.add),
+              onTap: () => {
+                Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ProductCreate()))
+              },
+            ),
+            ListTile(
+              title: Text('Home'),
+              leading: Icon(Icons.home),
+              onTap: () => {
+                Navigator.of(context).push(MaterialPageRoute(builder: (context)=>HomePage()))
+              },
+            ),
             ListTile(
               title: Text('Login'),
               leading: Icon(Icons.login),
@@ -45,8 +61,8 @@ class _AppDrawerState extends State<AppDrawer> {
                   radius: 30,
                 ),
                 SizedBox(height: 10,),
-                Text(auth.user.name,style: TextStyle(color: Colors.white),),
-                Text(auth.user.name,style: TextStyle(color: Colors.white),),
+                Text(auth.user!.name,style: TextStyle(color: Colors.white),),
+                Text(auth.user!.name,style: TextStyle(color: Colors.white),),
                 SizedBox(height: 10,),
               ],
             ),
