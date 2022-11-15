@@ -15,20 +15,19 @@ class _ProductCreateState extends State<ProductCreate> {
   final titleController=TextEditingController();
   final descriptionController=TextEditingController();
   PlatformFile? image;
-  // final formData={
-  //   'title':titleController.text,
-  //   'description':descriptionController.text,
-  //   'image':image,
-  // };
 
   Future captureImage() async{
     final result=await FilePicker.platform.pickFiles();
-    //final image=result.files.first;
+    final image=result!.files.first;
   }
 
   Future submit() async{
     try{
-     //Dio().post('/video/store',data:formData); 
+    Dio().post('/video/store',data:{
+    'title':titleController.text,
+    'description':descriptionController.text,
+    'image':image,
+  }); 
     }catch(e){
       
     }

@@ -5,6 +5,7 @@ import 'package:ecommerce_mobile/screens/product/product_create.dart';
 import 'package:ecommerce_mobile/services/auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:ecommerce_mobile/screens/product/product_show.dart';
 
 class AppDrawer extends StatefulWidget {
   const AppDrawer({super.key});
@@ -22,17 +23,17 @@ class _AppDrawerState extends State<AppDrawer> {
         ListView(
           children: [
             ListTile(
-              title: Text('create'),
-              leading: Icon(Icons.add),
-              onTap: () => {
-                Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ProductCreate()))
-              },
-            ),
-            ListTile(
               title: Text('Home'),
               leading: Icon(Icons.home),
               onTap: () => {
                 Navigator.of(context).push(MaterialPageRoute(builder: (context)=>HomePage()))
+              },
+            ),
+            ListTile(
+              title: Text('Sell'),
+              leading: Icon(Icons.add),
+              onTap: () => {
+                Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ProductCreate()))
               },
             ),
             ListTile(
@@ -48,7 +49,14 @@ class _AppDrawerState extends State<AppDrawer> {
               onTap: () => {
                 Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Register()))
               },
-            )
+            ),
+            ListTile(
+              title: Text('Show'),
+              leading: Icon(Icons.add),
+              onTap: () => {
+                Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ProductShow()))
+              },
+            ),
           ],
         )
         :ListView(
