@@ -33,6 +33,18 @@ class _ProductShowState extends State<ProductShow> {
       like=false;
     }
   }
+  
+  void watchLater() async{
+    //var res=await dio().post('/product/watch-later',data:{'userId':user.id,'productId':product.id});
+  }
+
+  void addToFavourite() async{
+    //var res=await dio().post('/product/add-to-favourite',data:{'userId':user.id,'productId':product.id});
+  }
+
+  void addToCart() async{
+    //var res=await dio().post('/product/add-to-cart',data:{'userId':user.id,'productId':product.id});
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -78,7 +90,8 @@ class _ProductShowState extends State<ProductShow> {
                   SingleChildScrollView(
                     physics: ScrollPhysics(),
                     child: ListView.builder(
-                      itemCount: recommendedProducts.length,
+                      //itemCount: recommendedProducts.length,
+                      itemCount: 1,
                       itemBuilder: (context,index){
                         return Container(
                           padding: EdgeInsets.symmetric(vertical: 5),
@@ -94,6 +107,33 @@ class _ProductShowState extends State<ProductShow> {
                                 children: [
                                   Text('new nike shoes',style: TextStyle(fontSize: 18,fontWeight: FontWeight.w600)),
                                   Text('new nike shoes',style: TextStyle(fontSize: 16,color: Colors.grey[700])),
+                                  Row(
+                                    children: [
+                                      IconButton(
+                                        color: Color(0Xff43db80),
+                                        onPressed:(){
+                                          watchLater(); 
+                                        },
+                                        icon:Icon(Icons.remove_red_eye) 
+                                      ),
+                                      SizedBox(width:10),
+                                      IconButton(
+                                        color: Color(0Xff43db80),
+                                        onPressed:(){
+                                          addToFavourite(); 
+                                        },
+                                        icon:Icon(Icons.heart_broken) 
+                                      ),
+                                      SizedBox(width:10),
+                                      IconButton(
+                                        color: Color(0Xff43db80),
+                                        onPressed:(){
+                                          addToCart(); 
+                                        },
+                                        icon:Icon(Icons.shop) 
+                                      ),
+                                    ],
+                                  )
                                 ],
                               )
                             ],
