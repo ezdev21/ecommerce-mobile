@@ -1,5 +1,6 @@
 import 'package:ecommerce_mobile/screens/auth/login.dart';
 import 'package:ecommerce_mobile/screens/auth/register.dart';
+import 'package:ecommerce_mobile/screens/category/category_show.dart';
 import 'package:ecommerce_mobile/screens/home_page.dart';
 import 'package:ecommerce_mobile/screens/product/product_create.dart';
 import 'package:ecommerce_mobile/services/auth.dart';
@@ -57,6 +58,13 @@ class _AppDrawerState extends State<AppDrawer> {
                 Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ProductShow()))
               },
             ),
+            ListTile(
+            title: Text('category'),
+            leading: Icon(Icons.category),
+            onTap: () => {
+              Navigator.of(context).push(MaterialPageRoute(builder: (context)=>CategoryShow()))
+            },
+          )
           ],
         )
         :ListView(
