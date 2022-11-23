@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:ecommerce_mobile/models/user.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'dart:io';
+
+import 'package:fluttertoast/fluttertoast.dart';
 //import 'package:device_info_plus/device_info_plus.dart';
 
 class Auth extends ChangeNotifier{
@@ -17,8 +19,9 @@ class Auth extends ChangeNotifier{
   void register(Map creds) async{
     try{
       var res=Dio().post('sanctum/register',data:creds);
+      showToast("success");
     }catch(e){
-      print(e);
+      showToast("error");
     }
   } 
 
@@ -65,6 +68,18 @@ class Auth extends ChangeNotifier{
       
     }
   }
+  
+  void showToast(String status){
+    Fluttertoast.showToast(
+      msg: status=="success"? "Account created successfully!" : "error occured while creating account",
+      toastLength: Toast.LENGTH_LONG,
+      gravity: ToastGravity.TOP,
+      timeInSecForIosWeb: 3,
+      backgroundColor: status=="success"? Color(0Xff43db80) : Colors.red,
+      textColor: Colors.white,
+      fontSize: 16.0
+    );
+  } 
 
   void cleanUp() async{
     user=null;
@@ -72,7 +87,7 @@ class Auth extends ChangeNotifier{
     token=null;
     await storage.delete(key: 'token');
   }
-
+  
   getDeviceInfo() async{
     String device_name='';
     if(Platform.isAndroid){

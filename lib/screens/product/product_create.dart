@@ -3,6 +3,7 @@ import 'package:ecommerce_mobile/widgets/app_drawer.dart';
 import 'package:ecommerce_mobile/widgets/custom_app_bar.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class ProductCreate extends StatefulWidget {
   const ProductCreate({super.key});
@@ -20,16 +21,29 @@ class _ProductCreateState extends State<ProductCreate> {
     final result=await FilePicker.platform.pickFiles();
     final image=result!.files.first;
   }
+  
+  void showToast(String status){
+    Fluttertoast.showToast(
+      msg: status=="success"? "Product ready for sell!" : "error occured while selling a product",
+      toastLength: Toast.LENGTH_LONG,
+      gravity: ToastGravity.TOP,
+      timeInSecForIosWeb: 3,
+      backgroundColor: status=="success"? Color(0Xff43db80) : Colors.red,
+      textColor: Colors.white,
+      fontSize: 16.0
+    );
+  }
 
   Future submit() async{
     try{
-    Dio().post('/video/store',data:{
-    'title':titleController.text,
-    'description':descriptionController.text,
-    'image':image,
-  }); 
+      Dio().post('/video/store',data:{
+        'title':titleController.text,
+        'description':descriptionController.text,
+        'image':image,
+      });
+      showToast("success"); 
     }catch(e){
-      
+      showToast("error");
     }
   }
 
@@ -97,7 +111,9 @@ class _ProductCreateState extends State<ProductCreate> {
             ),
             SizedBox(height: 10,),
             MaterialButton(
-              onPressed: ()=>submit(),
+              onPressed: (){
+                submit();
+              },
               child: Text('Submit',style: TextStyle(fontSize: 18),),
               color: Color(0Xff43db80),
               height: 50,

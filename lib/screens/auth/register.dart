@@ -18,7 +18,7 @@ class _RegisterState extends State<Register> {
   final emailController=TextEditingController();
   final passwordController=TextEditingController();
   final passwordConfirmationController=TextEditingController();
-
+  
   @override
   void dispose() {
     nameController.dispose();
