@@ -4,6 +4,7 @@ import 'package:ecommerce_mobile/services/auth.dart';
 import 'package:ecommerce_mobile/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommerce_mobile/services/dio.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class ProductShow extends StatefulWidget {
   const ProductShow({super.key});
@@ -18,6 +19,12 @@ class _ProductShowState extends State<ProductShow> {
   bool dislike=false;
   dynamic product;
   var recommendedProducts=[1];
+
+  double initialRating()
+  {
+    return (product.totalLikes)/(product.totalLikes+product.totalDislikes)*5;
+  }
+
   void likeProduct() async{
     //dio().post('/product/${product.id}/like',data: {'userId':'${user.id}','productId':'${product.id}','type':'like'});
     like=!like;
@@ -68,7 +75,9 @@ class _ProductShowState extends State<ProductShow> {
                 children: [
                   Text('new nike shoes',style: TextStyle(fontSize: 18,fontWeight: FontWeight.w600)),
                   Text('new nike shoes',style: TextStyle(fontSize: 16,color: Colors.grey[700])),
-                  Row(children: [
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
                     IconButton(
                       onPressed: (){
                       likeProduct();
@@ -84,6 +93,18 @@ class _ProductShowState extends State<ProductShow> {
                       icon: Icon(Icons.thumb_down)
                     ),
                     //Text('${product.totalDislikes}'),
+                    SizedBox(width: 20,),
+                    RatingBar.builder(
+                      minRating: 1,
+                      maxRating: 5,
+                      initialRating: initialRating(),
+                      allowHalfRating: true,
+                      itemSize: 30,
+                      onRatingUpdate: (value) {},
+                      itemBuilder: (context, index) {
+                        return Icon(Icons.star,color: Colors.amber,);
+                      }
+                    )
                   ],
                   ),
                   Text('Recommended Products',style: TextStyle(fontSize: 18,fontWeight: FontWeight.w600)),
