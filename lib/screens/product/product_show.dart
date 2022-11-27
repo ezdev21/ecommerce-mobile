@@ -1,5 +1,7 @@
 import 'package:ecommerce_mobile/models/product.dart';
 import 'package:ecommerce_mobile/models/user.dart';
+import 'package:ecommerce_mobile/screens/auth/login.dart';
+import 'package:ecommerce_mobile/screens/auth/register.dart';
 import 'package:ecommerce_mobile/services/auth.dart';
 import 'package:ecommerce_mobile/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +24,33 @@ class _ProductShowState extends State<ProductShow> {
 
   double initialRating()
   {
-    return (product.totalLikes)/(product.totalLikes+product.totalDislikes)*5;
+    //return (product.totalLikes)/(product.totalLikes+product.totalDislikes)*5;
+    return 4.5;
+  }
+
+  Future openDialog(String type){
+    return showDialog(
+      context: context,
+      builder: ((context) => AlertDialog(
+        title: Text('want to $type this product?',style: TextStyle(fontSize: 20,fontWeight: FontWeight.w500),),
+        content:Text('sign in to make your opinion count.'),
+        actions: [
+          TextButton(
+            onPressed:(){
+              Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Login())); 
+            },
+            child: Text('sign in',style: TextStyle(color:Color(0Xff43db80)),)
+          ),
+          MaterialButton(
+            onPressed:(){
+              Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Register())); 
+            },
+            color: Color(0Xff43db80),
+            child: Text('sign up',style: TextStyle(color:Colors.white),)
+          ), 
+        ],
+      ))
+    );
   }
 
   void likeProduct() async{
@@ -80,7 +108,18 @@ class _ProductShowState extends State<ProductShow> {
                     children: [
                     IconButton(
                       onPressed: (){
-                      likeProduct();
+                      // if(authenticated){
+                      //   setState(() {
+                      //   if(disliked){
+                      //     disliked=false;
+                      //   }
+                      //   liked=!liked;
+                      //   });
+                      //   likeProduct();
+                      // }
+                      // else{
+                        openDialog('like');
+                      // }
                       },
                       icon: Icon(Icons.thumb_up)
                     ),
@@ -88,7 +127,18 @@ class _ProductShowState extends State<ProductShow> {
                     SizedBox(width: 20,),
                     IconButton(
                       onPressed: (){
-                        dislikeProduct();
+                        // if(authenticated){
+                        //   setState(() {
+                        //     if(liked){
+                        //     liked=false;
+                        //     }
+                        //     disliked=!disliked;
+                        //   });
+                        //   dislikeProduct();
+                        // }
+                        // else{
+                          openDialog('dislike');
+                        //}
                       },
                       icon: Icon(Icons.thumb_down)
                     ),
@@ -108,61 +158,61 @@ class _ProductShowState extends State<ProductShow> {
                   ],
                   ),
                   Text('Recommended Products',style: TextStyle(fontSize: 18,fontWeight: FontWeight.w600)),
-                  SingleChildScrollView(
-                    physics: ScrollPhysics(),
-                    child: ListView.builder(
-                      //itemCount: recommendedProducts.length,
-                      itemCount: 1,
-                      itemBuilder: (context,index){
-                        return Container(
-                          padding: EdgeInsets.symmetric(vertical: 5),
-                          child: Row(
-                            crossAxisAlignment:CrossAxisAlignment.start,
-                            children: [
-                              Image.network(
-                                width:MediaQuery.of(context).size.width/2,
-                                'https://media.istockphoto.com/id/1405163092/photo/3d-render-of-sport-running-shoe-isolated-on-pastel-background-3d-background-minimal-scene.jpg?s=612x612&w=is&k=20&c=55ZC86AZBWD60IbclH2UnKj-93DpR34dDVI9HXzCpFo='
-                              ),
-                              SizedBox(width: 5,),
-                              Column(
-                                children: [
-                                  Text('new nike shoes',style: TextStyle(fontSize: 18,fontWeight: FontWeight.w600)),
-                                  Text('new nike shoes',style: TextStyle(fontSize: 16,color: Colors.grey[700])),
-                                  Row(
-                                    children: [
-                                      IconButton(
-                                        color: Color(0Xff43db80),
-                                        onPressed:(){
-                                          watchLater(); 
-                                        },
-                                        icon:Icon(Icons.remove_red_eye) 
-                                      ),
-                                      SizedBox(width:10),
-                                      IconButton(
-                                        color: Color(0Xff43db80),
-                                        onPressed:(){
-                                          addToFavourite(); 
-                                        },
-                                        icon:Icon(Icons.heart_broken) 
-                                      ),
-                                      SizedBox(width:10),
-                                      IconButton(
-                                        color: Color(0Xff43db80),
-                                        onPressed:(){
-                                          addToCart(); 
-                                        },
-                                        icon:Icon(Icons.shop) 
-                                      ),
-                                    ],
-                                  )
-                                ],
-                              )
-                            ],
-                          ),
-                        );
-                      }
-                    ),
-                  )
+                  // SingleChildScrollView(
+                  //   physics: ScrollPhysics(),
+                  //   child: ListView.builder(
+                  //     //itemCount: recommendedProducts.length,
+                  //     itemCount: 1,
+                  //     itemBuilder: (context,index){
+                  //       return Container(
+                  //         padding: EdgeInsets.symmetric(vertical: 5),
+                  //         child: Row(
+                  //           crossAxisAlignment:CrossAxisAlignment.start,
+                  //           children: [
+                  //             Image.network(
+                  //               width:MediaQuery.of(context).size.width/2,
+                  //               'https://media.istockphoto.com/id/1405163092/photo/3d-render-of-sport-running-shoe-isolated-on-pastel-background-3d-background-minimal-scene.jpg?s=612x612&w=is&k=20&c=55ZC86AZBWD60IbclH2UnKj-93DpR34dDVI9HXzCpFo='
+                  //             ),
+                  //             SizedBox(width: 5,),
+                  //             Column(
+                  //               children: [
+                  //                 Text('new nike shoes',style: TextStyle(fontSize: 18,fontWeight: FontWeight.w600)),
+                  //                 Text('new nike shoes',style: TextStyle(fontSize: 16,color: Colors.grey[700])),
+                  //                 Row(
+                  //                   children: [
+                  //                     IconButton(
+                  //                       color: Color(0Xff43db80),
+                  //                       onPressed:(){
+                  //                         watchLater(); 
+                  //                       },
+                  //                       icon:Icon(Icons.remove_red_eye) 
+                  //                     ),
+                  //                     SizedBox(width:10),
+                  //                     IconButton(
+                  //                       color: Color(0Xff43db80),
+                  //                       onPressed:(){
+                  //                         addToFavourite(); 
+                  //                       },
+                  //                       icon:Icon(Icons.heart_broken) 
+                  //                     ),
+                  //                     SizedBox(width:10),
+                  //                     IconButton(
+                  //                       color: Color(0Xff43db80),
+                  //                       onPressed:(){
+                  //                         addToCart(); 
+                  //                       },
+                  //                       icon:Icon(Icons.shop) 
+                  //                     ),
+                  //                   ],
+                  //                 )
+                  //               ],
+                  //             )
+                  //           ],
+                  //         ),
+                  //       );
+                  //     }
+                  //   ),
+                  // )
                 ]
               ),
             )

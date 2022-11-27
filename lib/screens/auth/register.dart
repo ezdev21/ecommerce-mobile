@@ -48,7 +48,7 @@ class _RegisterState extends State<Register> {
                     MouseRegion(
                       cursor: SystemMouseCursors.click,
                       child: GestureDetector(
-                        child: Text('sign in',style: TextStyle(color: Color(0xffdc143d)),),
+                        child: Text('sign in',style: TextStyle(color: Color(0Xff43db80)),),
                         onTap:(){
                           Navigator.push(context,MaterialPageRoute(builder: (context)=>Login()));
                         }
