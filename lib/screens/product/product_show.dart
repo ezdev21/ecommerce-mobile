@@ -3,10 +3,12 @@ import 'package:ecommerce_mobile/models/user.dart';
 import 'package:ecommerce_mobile/screens/auth/login.dart';
 import 'package:ecommerce_mobile/screens/auth/register.dart';
 import 'package:ecommerce_mobile/services/auth.dart';
+import 'package:ecommerce_mobile/services/product_service.dart';
 import 'package:ecommerce_mobile/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommerce_mobile/services/dio.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:provider/provider.dart';
 
 class ProductShow extends StatefulWidget {
   const ProductShow({super.key});
@@ -16,71 +18,9 @@ class ProductShow extends StatefulWidget {
 }
 
 class _ProductShowState extends State<ProductShow> {
-  //User? user=Auth!.user;
-  bool like=false;
-  bool dislike=false;
   dynamic product;
   var recommendedProducts=[1];
-
-  double initialRating()
-  {
-    //return (product.totalLikes)/(product.totalLikes+product.totalDislikes)*5;
-    return 4.5;
-  }
-
-  Future openDialog(String type){
-    return showDialog(
-      context: context,
-      builder: ((context) => AlertDialog(
-        title: Text('want to $type this product?',style: TextStyle(fontSize: 20,fontWeight: FontWeight.w500),),
-        content:Text('sign in to make your opinion count.'),
-        actions: [
-          TextButton(
-            onPressed:(){
-              Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Login())); 
-            },
-            child: Text('sign in',style: TextStyle(color:Color(0Xff43db80)),)
-          ),
-          MaterialButton(
-            onPressed:(){
-              Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Register())); 
-            },
-            color: Color(0Xff43db80),
-            child: Text('sign up',style: TextStyle(color:Colors.white),)
-          ), 
-        ],
-      ))
-    );
-  }
-
-  void likeProduct() async{
-    //dio().post('/product/${product.id}/like',data: {'userId':'${user.id}','productId':'${product.id}','type':'like'});
-    like=!like;
-    if(dislike){
-      dislike=false;
-    }
-  }
   
-  void dislikeProduct() async{
-    //dio().post('/product/${product.id}/like',data: {'userId':'${user.id}','productId':'${product.id}','type':'dislike'});
-    dislike=!dislike;
-    if(like){
-      like=false;
-    }
-  }
-  
-  void watchLater() async{
-    //var res=await dio().post('/product/watch-later',data:{'userId':user.id,'productId':product.id});
-  }
-
-  void addToFavourite() async{
-    //var res=await dio().post('/product/add-to-favourite',data:{'userId':user.id,'productId':product.id});
-  }
-
-  void addToCart() async{
-    //var res=await dio().post('/product/add-to-cart',data:{'userId':user.id,'productId':product.id});
-  }
-
   @override
   Widget build(BuildContext context) {
     product=ModalRoute.of(context)!.settings.arguments;
@@ -118,7 +58,7 @@ class _ProductShowState extends State<ProductShow> {
                       //   likeProduct();
                       // }
                       // else{
-                        openDialog('like');
+                        Provider.of<ProductService>(context,listen: false).openDialog('like',context);
                       // }
                       },
                       icon: Icon(Icons.thumb_up)
@@ -137,7 +77,7 @@ class _ProductShowState extends State<ProductShow> {
                         //   dislikeProduct();
                         // }
                         // else{
-                          openDialog('dislike');
+                          Provider.of<ProductService>(context,listen: false).openDialog('dislike',context);
                         //}
                       },
                       icon: Icon(Icons.thumb_down)
@@ -147,7 +87,7 @@ class _ProductShowState extends State<ProductShow> {
                     RatingBar.builder(
                       minRating: 1,
                       maxRating: 5,
-                      initialRating: initialRating(),
+                      initialRating: Provider.of<ProductService>(context,listen: false).initialRating(),
                       allowHalfRating: true,
                       itemSize: 30,
                       onRatingUpdate: (value) {},

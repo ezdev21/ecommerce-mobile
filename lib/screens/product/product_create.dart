@@ -1,9 +1,9 @@
-import 'package:dio/dio.dart';
+import 'package:ecommerce_mobile/services/product_service.dart';
 import 'package:ecommerce_mobile/widgets/app_drawer.dart';
 import 'package:ecommerce_mobile/widgets/custom_app_bar.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+import 'package:provider/provider.dart';
 
 class ProductCreate extends StatefulWidget {
   const ProductCreate({super.key});
@@ -16,36 +16,6 @@ class _ProductCreateState extends State<ProductCreate> {
   final titleController=TextEditingController();
   final descriptionController=TextEditingController();
   PlatformFile? image;
-
-  Future captureImage() async{
-    final result=await FilePicker.platform.pickFiles();
-    final image=result!.files.first;
-  }
-  
-  void showToast(String status){
-    Fluttertoast.showToast(
-      msg: status=="success"? "Product ready for sell!" : "error occured while selling a product",
-      toastLength: Toast.LENGTH_LONG,
-      gravity: ToastGravity.TOP,
-      timeInSecForIosWeb: 3,
-      backgroundColor: status=="success"? Color(0Xff43db80) : Colors.red,
-      textColor: Colors.white,
-      fontSize: 16.0
-    );
-  }
-
-  Future submit() async{
-    try{
-      Dio().post('/video/store',data:{
-        'title':titleController.text,
-        'description':descriptionController.text,
-        'image':image,
-      });
-      showToast("success"); 
-    }catch(e){
-      showToast("error");
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -83,7 +53,9 @@ class _ProductCreateState extends State<ProductCreate> {
             Text('upload image',style: TextStyle(fontSize: 18)),
             SizedBox(height:10),
             TextButton.icon(
-              onPressed: ()=>captureImage(),
+              onPressed: (){
+                Provider.of<ProductService>(context,listen: false).captureImage();
+              }, 
               style: TextButton.styleFrom(padding: EdgeInsets.all(15), foregroundColor: Colors.white, backgroundColor: Color(0Xff43db80)),
               icon: Icon(Icons.file_upload),
               label: Text('upload image here',style: TextStyle(fontSize: 18))
@@ -112,7 +84,12 @@ class _ProductCreateState extends State<ProductCreate> {
             SizedBox(height: 10,),
             MaterialButton(
               onPressed: (){
-                submit();
+                Map data={
+                  'title':titleController.text,
+                  'description':descriptionController.text,
+                  'image':image,
+                };
+                Provider.of<ProductService>(context,listen:false).createProduct(data);
               },
               child: Text('Submit',style: TextStyle(fontSize: 18),),
               color: Color(0Xff43db80),

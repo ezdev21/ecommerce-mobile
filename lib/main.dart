@@ -1,4 +1,5 @@
 import 'package:ecommerce_mobile/services/auth.dart';
+import 'package:ecommerce_mobile/services/product_service.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommerce_mobile/screens/home_page.dart';
 import 'package:provider/provider.dart';
@@ -6,7 +7,8 @@ void main() {
   runApp(
     MultiProvider(
       providers:[
-        ChangeNotifierProvider(create: (context)=>Auth())
+        ChangeNotifierProvider(create: (context)=>Auth()),
+        ChangeNotifierProvider(create: (context)=>ProductService()),
       ],
       child: const MyApp()
     )
