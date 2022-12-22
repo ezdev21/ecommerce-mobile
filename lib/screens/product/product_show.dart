@@ -2,7 +2,7 @@ import 'package:ecommerce_mobile/models/product.dart';
 import 'package:ecommerce_mobile/models/user.dart';
 import 'package:ecommerce_mobile/screens/auth/login.dart';
 import 'package:ecommerce_mobile/screens/auth/register.dart';
-import 'package:ecommerce_mobile/services/auth.dart';
+import 'package:ecommerce_mobile/services/auth_service.dart';
 import 'package:ecommerce_mobile/services/product_service.dart';
 import 'package:ecommerce_mobile/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';

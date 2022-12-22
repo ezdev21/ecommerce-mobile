@@ -7,7 +7,7 @@ import 'dart:io';
 import 'package:fluttertoast/fluttertoast.dart';
 //import 'package:device_info_plus/device_info_plus.dart';
 
-class Auth extends ChangeNotifier{
+class AuthService extends ChangeNotifier{
   late User? user;
   bool logged=false;
   String? token='';

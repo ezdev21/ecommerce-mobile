@@ -1,8 +1,10 @@
 import 'package:ecommerce_mobile/screens/home_page.dart';
+import 'package:ecommerce_mobile/services/category_service.dart';
 import 'package:ecommerce_mobile/services/dio.dart';
 import 'package:ecommerce_mobile/widgets/app_drawer.dart';
 import 'package:ecommerce_mobile/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class CategoryShow extends StatefulWidget {
   const CategoryShow({super.key});
@@ -12,27 +14,13 @@ class CategoryShow extends StatefulWidget {
 }
 
 class _CategoryShowState extends State<CategoryShow> {
-  dynamic categories;
-  var selectedCategories=[];
 
   @override
   void initState() {
-    getCategories();
+    Provider.of<CategoryService>(context,listen: false).fetchCategories();
     super.initState();
   }
   
-  void getCategories() async{
-    var res=await dio().get('/categories');
-    categories=res.data;
-  }
-
-  void addCategory(index){
-    selectedCategories.add(index);
-  }
-  Future submit() async{
-    var res=await dio().post('/categories');
-    Navigator.push(context, MaterialPageRoute(builder: (context)=>HomePage()));
-  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,14 +33,14 @@ class _CategoryShowState extends State<CategoryShow> {
           children: [
             Text('choose categories you want to get notification from',style: TextStyle(fontSize: 22,fontFamily: 'Pacifico',fontWeight: FontWeight.w500,color: Colors.grey[600]),),
             ListView.builder(
-              itemCount: categories.length,
+              itemCount: Provider.of<CategoryService>(context,listen: false).categories.length,
               itemBuilder: (context,index){
-                var category=categories[index];
+                var category=Provider.of<CategoryService>(context,listen: false).categories[index];
                 return CheckboxListTile(
                   title: Text('${category.text}'),
                   value: false,
                   onChanged: (newValue) {
-                    addCategory(index); 
+                    Provider.of<CategoryService>(context,listen: false).addCategory(index); 
                   },
                   controlAffinity: ListTileControlAffinity.leading
                 );  
@@ -65,7 +53,7 @@ class _CategoryShowState extends State<CategoryShow> {
               color: Color(0Xff43db80),
               textColor: Colors.white,
               onPressed: (){
-                submit();
+                Provider.of<CategoryService>(context,listen: false).submit(context);
               },
               child: Text('Submit',style: TextStyle(fontSize: 18),),
             )            
