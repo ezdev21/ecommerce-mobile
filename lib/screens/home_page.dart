@@ -1,5 +1,5 @@
+import 'package:ecommerce_mobile/provider/auth_provider.dart';
 import 'package:ecommerce_mobile/screens/product/product_show.dart';
-import 'package:ecommerce_mobile/services/auth_service.dart';
 import 'package:ecommerce_mobile/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -35,7 +35,7 @@ class _HomePageState extends State<HomePage> {
   
   void readToken() async{
     String? token=await storage.read(key: 'token');
-    Provider.of<AuthService>(context,listen: false).tryToken(token);
+    Provider.of<AuthProvider>(context,listen: false).tryToken(token);
   }
 
   @override

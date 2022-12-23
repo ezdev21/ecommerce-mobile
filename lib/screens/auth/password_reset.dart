@@ -1,8 +1,8 @@
+import 'package:ecommerce_mobile/provider/auth_provider.dart';
 import 'package:ecommerce_mobile/widgets/app_drawer.dart';
 import 'package:ecommerce_mobile/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:ecommerce_mobile/services/auth_service.dart';
 import 'package:ecommerce_mobile/services/dio.dart';
 
 class PasswordReset extends StatefulWidget {
@@ -39,9 +39,9 @@ class _PasswordResetState extends State<PasswordReset> {
     Map creds={
       'email':emailController.text,
       'password':passwordController.text,
-      'device_info':Provider.of<AuthService>(context,listen:false).getDeviceInfo()
+      'device_info':Provider.of<AuthProvider>(context,listen:false).getDeviceInfo()
     };
-    Provider.of<AuthService>(context,listen:false).login(creds);
+    Provider.of<AuthProvider>(context,listen:false).login(creds);
     Navigator.of(context).pop();
   } 
 

@@ -2,7 +2,7 @@ import 'package:ecommerce_mobile/screens/home_page.dart';
 import 'package:ecommerce_mobile/services/dio.dart';
 import 'package:flutter/material.dart';
 
-class CategoryService extends ChangeNotifier{
+class CategoryProvider extends ChangeNotifier{
   dynamic categories;
   var selectedCategories=[];
 

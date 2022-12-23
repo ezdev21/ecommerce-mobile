@@ -1,9 +1,9 @@
+import 'package:ecommerce_mobile/provider/auth_provider.dart';
 import 'package:ecommerce_mobile/screens/auth/login.dart';
 import 'package:ecommerce_mobile/screens/auth/register.dart';
 import 'package:ecommerce_mobile/screens/category/category_show.dart';
 import 'package:ecommerce_mobile/screens/home_page.dart';
 import 'package:ecommerce_mobile/screens/product/product_create.dart';
-import 'package:ecommerce_mobile/services/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:ecommerce_mobile/screens/product/product_show.dart';
@@ -19,7 +19,7 @@ class _AppDrawerState extends State<AppDrawer> {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      child:Consumer<AuthService>(builder:(context,auth,child){
+      child:Consumer<AuthProvider>(builder:(context,auth,child){
         return !auth.authenticated ?
         ListView(
           children: [
@@ -90,7 +90,7 @@ class _AppDrawerState extends State<AppDrawer> {
             title: Text('Logout'),
             leading: Icon(Icons.logout),
             onTap: () => {
-              Provider.of<AuthService>(context,listen: false).logout()
+              Provider.of<AuthProvider>(context,listen: false).logout()
               //Navigator.of(context).push(MaterialPageRoute(builder: (context)=>HomePage()))
             },
           )

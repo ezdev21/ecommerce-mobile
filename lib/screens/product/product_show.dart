@@ -1,12 +1,6 @@
-import 'package:ecommerce_mobile/models/product.dart';
-import 'package:ecommerce_mobile/models/user.dart';
-import 'package:ecommerce_mobile/screens/auth/login.dart';
-import 'package:ecommerce_mobile/screens/auth/register.dart';
-import 'package:ecommerce_mobile/services/auth_service.dart';
-import 'package:ecommerce_mobile/services/product_service.dart';
+import 'package:ecommerce_mobile/provider/product_provider.dart';
 import 'package:ecommerce_mobile/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:ecommerce_mobile/services/dio.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:provider/provider.dart';
 
@@ -58,7 +52,7 @@ class _ProductShowState extends State<ProductShow> {
                       //   likeProduct();
                       // }
                       // else{
-                        Provider.of<ProductService>(context,listen: false).openDialog('like',context);
+                        Provider.of<ProductProvider>(context,listen: false).openDialog('like',context);
                       // }
                       },
                       icon: Icon(Icons.thumb_up)
@@ -77,7 +71,7 @@ class _ProductShowState extends State<ProductShow> {
                         //   dislikeProduct();
                         // }
                         // else{
-                          Provider.of<ProductService>(context,listen: false).openDialog('dislike',context);
+                          Provider.of<ProductProvider>(context,listen: false).openDialog('dislike',context);
                         //}
                       },
                       icon: Icon(Icons.thumb_down)
@@ -87,7 +81,7 @@ class _ProductShowState extends State<ProductShow> {
                     RatingBar.builder(
                       minRating: 1,
                       maxRating: 5,
-                      initialRating: Provider.of<ProductService>(context,listen: false).initialRating(),
+                      initialRating: Provider.of<ProductProvider>(context,listen: false).initialRating(),
                       allowHalfRating: true,
                       itemSize: 30,
                       onRatingUpdate: (value) {},

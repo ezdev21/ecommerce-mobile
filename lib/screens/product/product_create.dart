@@ -1,4 +1,4 @@
-import 'package:ecommerce_mobile/services/product_service.dart';
+import 'package:ecommerce_mobile/provider/product_provider.dart';
 import 'package:ecommerce_mobile/widgets/app_drawer.dart';
 import 'package:ecommerce_mobile/widgets/custom_app_bar.dart';
 import 'package:file_picker/file_picker.dart';
@@ -54,7 +54,7 @@ class _ProductCreateState extends State<ProductCreate> {
             SizedBox(height:10),
             TextButton.icon(
               onPressed: (){
-                Provider.of<ProductService>(context,listen: false).captureImage();
+                Provider.of<ProductProvider>(context,listen: false).captureImage();
               }, 
               style: TextButton.styleFrom(padding: EdgeInsets.all(15), foregroundColor: Colors.white, backgroundColor: Color(0Xff43db80)),
               icon: Icon(Icons.file_upload),
@@ -89,7 +89,7 @@ class _ProductCreateState extends State<ProductCreate> {
                   'description':descriptionController.text,
                   'image':image,
                 };
-                Provider.of<ProductService>(context,listen:false).createProduct(data);
+                Provider.of<ProductProvider>(context,listen:false).createProduct(data);
               },
               child: Text('Submit',style: TextStyle(fontSize: 18),),
               color: Color(0Xff43db80),

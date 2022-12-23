@@ -1,6 +1,4 @@
-import 'package:ecommerce_mobile/screens/home_page.dart';
-import 'package:ecommerce_mobile/services/category_service.dart';
-import 'package:ecommerce_mobile/services/dio.dart';
+import 'package:ecommerce_mobile/provider/category_provider.dart';
 import 'package:ecommerce_mobile/widgets/app_drawer.dart';
 import 'package:ecommerce_mobile/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +15,7 @@ class _CategoryShowState extends State<CategoryShow> {
 
   @override
   void initState() {
-    Provider.of<CategoryService>(context,listen: false).fetchCategories();
+    Provider.of<CategoryProvider>(context,listen: false).fetchCategories();
     super.initState();
   }
   
@@ -33,14 +31,14 @@ class _CategoryShowState extends State<CategoryShow> {
           children: [
             Text('choose categories you want to get notification from',style: TextStyle(fontSize: 22,fontFamily: 'Pacifico',fontWeight: FontWeight.w500,color: Colors.grey[600]),),
             ListView.builder(
-              itemCount: Provider.of<CategoryService>(context,listen: false).categories.length,
+              itemCount: Provider.of<CategoryProvider>(context,listen: false).categories.length,
               itemBuilder: (context,index){
-                var category=Provider.of<CategoryService>(context,listen: false).categories[index];
+                var category=Provider.of<CategoryProvider>(context,listen: false).categories[index];
                 return CheckboxListTile(
                   title: Text('${category.text}'),
                   value: false,
                   onChanged: (newValue) {
-                    Provider.of<CategoryService>(context,listen: false).addCategory(index); 
+                    Provider.of<CategoryProvider>(context,listen: false).addCategory(index); 
                   },
                   controlAffinity: ListTileControlAffinity.leading
                 );  
@@ -53,7 +51,7 @@ class _CategoryShowState extends State<CategoryShow> {
               color: Color(0Xff43db80),
               textColor: Colors.white,
               onPressed: (){
-                Provider.of<CategoryService>(context,listen: false).submit(context);
+                Provider.of<CategoryProvider>(context,listen: false).submit(context);
               },
               child: Text('Submit',style: TextStyle(fontSize: 18),),
             )            

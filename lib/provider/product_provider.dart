@@ -5,12 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:ecommerce_mobile/services/dio.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-class ProductService extends ChangeNotifier{
+class ProductProvider extends ChangeNotifier{
   //User? user=Auth!.user;
   bool like=false;
   bool dislike=false;
 
-  
   Future captureImage() async{
     final result=await FilePicker.platform.pickFiles();
     final image=result!.files.first;
