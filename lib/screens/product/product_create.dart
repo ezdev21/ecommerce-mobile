@@ -28,7 +28,7 @@ class _ProductCreateState extends State<ProductCreate> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('add a new product here',textAlign: TextAlign.center, style: TextStyle(color:Colors.grey[600],fontSize: 25,fontFamily: 'Pacifico'),),
+            Text('sell a new product',textAlign: TextAlign.center, style: TextStyle(color:Colors.grey[600],fontSize: 25,fontFamily: 'Pacifico'),),
             SizedBox(height: 10,),
             Text('product title',style: TextStyle(fontSize: 18),),
             SizedBox(height:10),

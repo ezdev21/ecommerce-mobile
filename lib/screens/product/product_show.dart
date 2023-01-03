@@ -92,61 +92,60 @@ class _ProductShowState extends State<ProductShow> {
                   ],
                   ),
                   Text('Recommended Products',style: TextStyle(fontSize: 18,fontWeight: FontWeight.w600)),
-                  // SingleChildScrollView(
-                  //   physics: ScrollPhysics(),
-                  //   child: ListView.builder(
-                  //     //itemCount: recommendedProducts.length,
-                  //     itemCount: 1,
-                  //     itemBuilder: (context,index){
-                  //       return Container(
-                  //         padding: EdgeInsets.symmetric(vertical: 5),
-                  //         child: Row(
-                  //           crossAxisAlignment:CrossAxisAlignment.start,
-                  //           children: [
-                  //             Image.network(
-                  //               width:MediaQuery.of(context).size.width/2,
-                  //               'https://media.istockphoto.com/id/1405163092/photo/3d-render-of-sport-running-shoe-isolated-on-pastel-background-3d-background-minimal-scene.jpg?s=612x612&w=is&k=20&c=55ZC86AZBWD60IbclH2UnKj-93DpR34dDVI9HXzCpFo='
-                  //             ),
-                  //             SizedBox(width: 5,),
-                  //             Column(
-                  //               children: [
-                  //                 Text('new nike shoes',style: TextStyle(fontSize: 18,fontWeight: FontWeight.w600)),
-                  //                 Text('new nike shoes',style: TextStyle(fontSize: 16,color: Colors.grey[700])),
-                  //                 Row(
-                  //                   children: [
-                  //                     IconButton(
-                  //                       color: Color(0Xff43db80),
-                  //                       onPressed:(){
-                  //                         watchLater(); 
-                  //                       },
-                  //                       icon:Icon(Icons.remove_red_eye) 
-                  //                     ),
-                  //                     SizedBox(width:10),
-                  //                     IconButton(
-                  //                       color: Color(0Xff43db80),
-                  //                       onPressed:(){
-                  //                         addToFavourite(); 
-                  //                       },
-                  //                       icon:Icon(Icons.heart_broken) 
-                  //                     ),
-                  //                     SizedBox(width:10),
-                  //                     IconButton(
-                  //                       color: Color(0Xff43db80),
-                  //                       onPressed:(){
-                  //                         addToCart(); 
-                  //                       },
-                  //                       icon:Icon(Icons.shop) 
-                  //                     ),
-                  //                   ],
-                  //                 )
-                  //               ],
-                  //             )
-                  //           ],
-                  //         ),
-                  //       );
-                  //     }
-                  //   ),
-                  // )
+                  SingleChildScrollView(
+                    scrollDirection: Axis.vertical,
+                    child: ListView.builder(
+                        itemCount: recommendedProducts.length,
+                        itemBuilder: (context,index){
+                          return Container(
+                            padding: EdgeInsets.symmetric(vertical: 5),
+                            child: Row(
+                              crossAxisAlignment:CrossAxisAlignment.start,
+                              children: [
+                                Image.network(
+                                  width:MediaQuery.of(context).size.width/2,
+                                  'https://media.istockphoto.com/id/1405163092/photo/3d-render-of-sport-running-shoe-isolated-on-pastel-background-3d-background-minimal-scene.jpg?s=612x612&w=is&k=20&c=55ZC86AZBWD60IbclH2UnKj-93DpR34dDVI9HXzCpFo='
+                                ),
+                                SizedBox(width: 5,),
+                                Column(
+                                  children: [
+                                    Text('new nike shoes',style: TextStyle(fontSize: 18,fontWeight: FontWeight.w600)),
+                                    Text('new nike shoes',style: TextStyle(fontSize: 16,color: Colors.grey[700])),
+                                    Row(
+                                      children: [
+                                        IconButton(
+                                          color: Color(0Xff43db80),
+                                          onPressed:(){
+                                            Provider.of<ProductProvider>(context,listen: false).watchLater(); 
+                                          },
+                                          icon:Icon(Icons.remove_red_eye) 
+                                        ),
+                                        SizedBox(width:10),
+                                        IconButton(
+                                          color: Color(0Xff43db80),
+                                          onPressed:(){
+                                            Provider.of<ProductProvider>(context,listen: false).addToFavourite(); 
+                                          },
+                                          icon:Icon(Icons.heart_broken) 
+                                        ),
+                                        SizedBox(width:10),
+                                        IconButton(
+                                          color: Color(0Xff43db80),
+                                          onPressed:(){
+                                            Provider.of<ProductProvider>(context,listen: false).addToCart(); 
+                                          },
+                                          icon:Icon(Icons.shop) 
+                                        ),
+                                      ],
+                                    )
+                                  ],
+                                )
+                              ],
+                            ),
+                          );
+                        }
+                      ),
+                  ),
                 ]
               ),
             )
