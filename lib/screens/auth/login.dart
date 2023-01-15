@@ -31,7 +31,7 @@ class _LoginState extends State<Login> {
       appBar: CustomAppBar(),
       body: Center(
         child: Padding(
-          padding: EdgeInsets.symmetric(vertical:30,horizontal:5),
+          padding: const EdgeInsets.symmetric(vertical:30,horizontal:5),
           child: Form(
             key: formKey,
             child: Column(
@@ -40,19 +40,19 @@ class _LoginState extends State<Login> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text("don't have an account?"),
+                    const Text("don't have an account?"),
                     MouseRegion(
                       cursor: SystemMouseCursors.click,
                       child: GestureDetector(
-                        child: Text('sign up',style: TextStyle(color:Color(0Xff43db80)),),
+                        child: const Text('sign up',style: TextStyle(color:Color(0Xff43db80)),),
                         onTap:(){
-                          Navigator.push(context,MaterialPageRoute(builder: (context)=>Register()));
+                          Navigator.push(context,MaterialPageRoute(builder: (context)=>const Register()));
                         }
                       ),
                     )
                   ],
                 ),
-                SizedBox(height: 30),
+                const SizedBox(height: 30),
                 TextFormField(
                   controller: emailController,
                   decoration: InputDecoration(
@@ -60,18 +60,18 @@ class _LoginState extends State<Login> {
                     hintText: 'jhondoe@gmail.com',
                     fillColor:Colors.white,
                     filled:true,
-                    contentPadding: EdgeInsets.all(3),
+                    contentPadding: const EdgeInsets.all(3),
                     enabledBorder: OutlineInputBorder(
                       borderSide:BorderSide(width: 2,color: Colors.grey.shade400),
                       borderRadius:BorderRadius.circular(5)
                     ),
                     focusedBorder: OutlineInputBorder(
-                      borderSide:BorderSide(width: 2,color: Color(0Xff43db80)),
+                      borderSide:const BorderSide(width: 2,color: Color(0Xff43db80)),
                       borderRadius:BorderRadius.circular(5)
                     ),
                   ),
                 ),
-                SizedBox(height:30),
+                const SizedBox(height:30),
                 TextFormField(
                   controller: passwordController,
                   obscureText:true,
@@ -80,29 +80,29 @@ class _LoginState extends State<Login> {
                     hintText: '********',
                     fillColor:Colors.white,
                     filled:true,
-                    contentPadding: EdgeInsets.all(3),
+                    contentPadding: const EdgeInsets.all(3),
                     enabledBorder: OutlineInputBorder(
                       borderSide:BorderSide(width: 2,color: Colors.grey.shade400),
                       borderRadius:BorderRadius.circular(5)
                     ),
                     focusedBorder: OutlineInputBorder(
-                      borderSide:BorderSide(width: 2,color: Color(0Xff43db80)),
+                      borderSide:const BorderSide(width: 2,color: Color(0Xff43db80)),
                       borderRadius:BorderRadius.circular(5)
                     ),
                   ),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 MaterialButton(
-                  textColor:Color(0Xff43db80),
-                  child: Text('forgot password?'),
+                  textColor:const Color(0Xff43db80),
+                  child: const Text('forgot password?'),
                   onPressed:() {
-                    Navigator.push(context,MaterialPageRoute(builder: (context)=>PasswordReset()));
+                    Navigator.push(context,MaterialPageRoute(builder: (context)=>const PasswordReset()));
                   }
                 ),
                 MaterialButton(
                   minWidth: double.infinity,
                   height: 50,
-                  color: Color(0Xff43db80),
+                  color: const Color(0Xff43db80),
                   textColor: Colors.white,
                   onPressed: (){
                     Map creds={
@@ -113,7 +113,7 @@ class _LoginState extends State<Login> {
                     Provider.of<AuthProvider>(context,listen:false).login(creds);
                     Navigator.of(context).pop();
                   },
-                  child: Text('Login',style: TextStyle(fontSize: 18),),
+                  child: const Text('Login',style: TextStyle(fontSize: 18),),
                 )
               ], 
             )

@@ -21,7 +21,7 @@ class ProductProvider extends ChangeNotifier{
       toastLength: Toast.LENGTH_LONG,
       gravity: ToastGravity.TOP,
       timeInSecForIosWeb: 3,
-      backgroundColor: status=="success"? Color(0Xff43db80) : Colors.red,
+      backgroundColor: status=="success"? const Color(0Xff43db80) : Colors.red,
       textColor: Colors.white,
       fontSize: 16.0
     );
@@ -41,21 +41,21 @@ class ProductProvider extends ChangeNotifier{
     return showDialog(
       context: context,
       builder: ((context) => AlertDialog(
-        title: Text('want to $type this product?',style: TextStyle(fontSize: 20,fontWeight: FontWeight.w500),),
-        content:Text('sign in to make your opinion count.'),
+        title: Text('want to $type this product?',style: const TextStyle(fontSize: 20,fontWeight: FontWeight.w500),),
+        content:const Text('sign in to make your opinion count.'),
         actions: [
           TextButton(
             onPressed:(){
-              Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Login())); 
+              Navigator.of(context).push(MaterialPageRoute(builder: (context)=>const Login())); 
             },
-            child: Text('sign in',style: TextStyle(color:Color(0Xff43db80)),)
+            child: const Text('sign in',style: TextStyle(color:Color(0Xff43db80)),)
           ),
           MaterialButton(
             onPressed:(){
-              Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Register())); 
+              Navigator.of(context).push(MaterialPageRoute(builder: (context)=>const Register())); 
             },
-            color: Color(0Xff43db80),
-            child: Text('sign up',style: TextStyle(color:Colors.white),)
+            color: const Color(0Xff43db80),
+            child: const Text('sign up',style: TextStyle(color:Colors.white),)
           ), 
         ],
       ))

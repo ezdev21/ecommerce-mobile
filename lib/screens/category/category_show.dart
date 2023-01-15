@@ -22,41 +22,39 @@ class _CategoryShowState extends State<CategoryShow> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: AppDrawer(),
+      drawer: const AppDrawer(),
       backgroundColor: Colors.grey[200],
       appBar: CustomAppBar(),
-      body: Container(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Text('choose categories you want to get notification from',style: TextStyle(fontSize: 22,fontFamily: 'Pacifico',fontWeight: FontWeight.w500,color: Colors.grey[600]),),
-            ListView.builder(
-              itemCount: Provider.of<CategoryProvider>(context,listen: false).categories.length,
-              itemBuilder: (context,index){
-                var category=Provider.of<CategoryProvider>(context,listen: false).categories[index];
-                return CheckboxListTile(
-                  title: Text('${category.text}'),
-                  value: false,
-                  onChanged: (newValue) {
-                    Provider.of<CategoryProvider>(context,listen: false).addCategory(index); 
-                  },
-                  controlAffinity: ListTileControlAffinity.leading
-                );  
-              }
-            ),
-            SizedBox(height: 20,),
-            MaterialButton(
-              minWidth: double.infinity,
-              height: 50,
-              color: Color(0Xff43db80),
-              textColor: Colors.white,
-              onPressed: (){
-                Provider.of<CategoryProvider>(context,listen: false).submit(context);
-              },
-              child: Text('Submit',style: TextStyle(fontSize: 18),),
-            )            
-          ],
-        ), 
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Text('choose categories you want to get notification from',style: TextStyle(fontSize: 22,fontFamily: 'Pacifico',fontWeight: FontWeight.w500,color: Colors.grey[600]),),
+          ListView.builder(
+            itemCount: Provider.of<CategoryProvider>(context,listen: false).categories.length,
+            itemBuilder: (context,index){
+              var category=Provider.of<CategoryProvider>(context,listen: false).categories[index];
+              return CheckboxListTile(
+                title: Text('${category.text}'),
+                value: false,
+                onChanged: (newValue) {
+                  Provider.of<CategoryProvider>(context,listen: false).addCategory(index); 
+                },
+                controlAffinity: ListTileControlAffinity.leading
+              );  
+            }
+          ),
+          const SizedBox(height: 20,),
+          MaterialButton(
+            minWidth: double.infinity,
+            height: 50,
+            color: const Color(0Xff43db80),
+            textColor: Colors.white,
+            onPressed: (){
+              Provider.of<CategoryProvider>(context,listen: false).submit(context);
+            },
+            child: const Text('Submit',style: TextStyle(fontSize: 18),),
+          )            
+        ],
       ),
     );
   }

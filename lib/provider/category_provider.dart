@@ -20,7 +20,7 @@ class CategoryProvider extends ChangeNotifier{
   }
 
   Future submit(context) async{
-    var res=await dio().post('/categories');
-    Navigator.push(context,MaterialPageRoute(builder: (context)=>HomePage()));
+    await dio().post('/categories');
+    Navigator.push(context,MaterialPageRoute(builder: (context)=>const HomePage()));
   }
 }

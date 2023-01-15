@@ -35,7 +35,7 @@ class _RegisterState extends State<Register> {
       appBar: CustomAppBar(),
       body: Center(
         child: Padding(
-          padding: EdgeInsets.symmetric(vertical:30,horizontal:5),
+          padding: const EdgeInsets.symmetric(vertical:30,horizontal:5),
           child: Form(
             key: formKey,
             child: Column(
@@ -44,19 +44,19 @@ class _RegisterState extends State<Register> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text('already have an account?'),
+                    const Text('already have an account?'),
                     MouseRegion(
                       cursor: SystemMouseCursors.click,
                       child: GestureDetector(
-                        child: Text('sign in',style: TextStyle(color: Color(0Xff43db80)),),
+                        child: const Text('sign in',style: TextStyle(color: Color(0Xff43db80)),),
                         onTap:(){
-                          Navigator.push(context,MaterialPageRoute(builder: (context)=>Login()));
+                          Navigator.push(context,MaterialPageRoute(builder: (context)=>const Login()));
                         }
                       ),
                     )
                   ],
                 ),
-                SizedBox(height: 30),
+                const SizedBox(height: 30),
                 TextFormField(
                   controller: nameController,
                   decoration: InputDecoration(
@@ -64,18 +64,18 @@ class _RegisterState extends State<Register> {
                     hintText: 'jhon doe',
                     fillColor:Colors.white,
                     filled:true,
-                    contentPadding: EdgeInsets.all(3),
+                    contentPadding: const EdgeInsets.all(3),
                     enabledBorder: OutlineInputBorder(
                       borderSide:BorderSide(width: 2,color: Colors.grey.shade400),
                       borderRadius:BorderRadius.circular(5)
                     ),
                     focusedBorder: OutlineInputBorder(
-                      borderSide:BorderSide(width: 2,color: Color(0Xff43db80)),
+                      borderSide:const BorderSide(width: 2,color: Color(0Xff43db80)),
                       borderRadius:BorderRadius.circular(5)
                     ),
                   ),
                 ),
-                SizedBox(height: 30),
+                const SizedBox(height: 30),
                 TextFormField(
                   controller: emailController,
                   decoration: InputDecoration(
@@ -83,18 +83,18 @@ class _RegisterState extends State<Register> {
                     hintText: 'jhondoe@gmail.com',
                     fillColor:Colors.white,
                     filled:true,
-                    contentPadding: EdgeInsets.all(3),
+                    contentPadding: const EdgeInsets.all(3),
                     enabledBorder: OutlineInputBorder(
                       borderSide:BorderSide(width: 2,color: Colors.grey.shade400),
                       borderRadius:BorderRadius.circular(5)
                     ),
                     focusedBorder: OutlineInputBorder(
-                      borderSide:BorderSide(width: 2,color: Color(0Xff43db80)),
+                      borderSide:const BorderSide(width: 2,color: Color(0Xff43db80)),
                       borderRadius:BorderRadius.circular(5)
                     ),
                   ),
                 ),
-                SizedBox(height:30),
+                const SizedBox(height:30),
                 TextFormField(
                   controller: passwordController,
                   obscureText:true,
@@ -103,18 +103,18 @@ class _RegisterState extends State<Register> {
                     hintText: '********',
                     fillColor:Colors.white,
                     filled:true,
-                    contentPadding: EdgeInsets.all(3),
+                    contentPadding: const EdgeInsets.all(3),
                     enabledBorder: OutlineInputBorder(
                       borderSide:BorderSide(width: 2,color: Colors.grey.shade400),
                       borderRadius:BorderRadius.circular(5)
                     ),
                     focusedBorder: OutlineInputBorder(
-                      borderSide:BorderSide(width: 2,color: Color(0Xff43db80)),
+                      borderSide:const BorderSide(width: 2,color: Color(0Xff43db80)),
                       borderRadius:BorderRadius.circular(5)
                     ),
                   ),
                 ),
-                SizedBox(height:30),
+                const SizedBox(height:30),
                 TextFormField(
                   controller: passwordConfirmationController,
                   obscureText:true,
@@ -123,22 +123,22 @@ class _RegisterState extends State<Register> {
                     hintText: '********',
                     fillColor:Colors.white,
                     filled:true,
-                    contentPadding: EdgeInsets.all(3),
+                    contentPadding: const EdgeInsets.all(3),
                     enabledBorder: OutlineInputBorder(
                       borderSide:BorderSide(width: 2,color: Colors.grey.shade400),
                       borderRadius:BorderRadius.circular(5)
                     ),
                     focusedBorder: OutlineInputBorder(
-                      borderSide:BorderSide(width: 2,color: Color(0Xff43db80)),
+                      borderSide:const BorderSide(width: 2,color: Color(0Xff43db80)),
                       borderRadius:BorderRadius.circular(5)
                     ),
                   ),
                 ),
-                SizedBox(height: 30),
+                const SizedBox(height: 30),
                 MaterialButton(
                   minWidth: double.infinity,
                   height: 50,
-                  color: Color(0Xff43db80),
+                  color: const Color(0Xff43db80),
                   textColor: Colors.white,
                   onPressed: (){
                     Map creds={
@@ -151,7 +151,7 @@ class _RegisterState extends State<Register> {
                     Provider.of<AuthProvider>(context,listen:false).login({'email':emailController.text,'password':passwordController.text});
                     Navigator.of(context).pop();
                   },
-                  child: Text('Register',style: TextStyle(fontSize: 18),),
+                  child: const Text('Register',style: TextStyle(fontSize: 18),),
                 )
               ], 
             )

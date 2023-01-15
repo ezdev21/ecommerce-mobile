@@ -17,7 +17,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final storage = new FlutterSecureStorage();
+  final storage = const FlutterSecureStorage();
   final searchController=TextEditingController();
   List<dynamic> items=[];
 
@@ -47,18 +47,18 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: AppDrawer(),
+      drawer: const AppDrawer(),
       backgroundColor: Colors.grey[200],
       appBar: CustomAppBar(),
-      body: items.length==0 ?
+      body: items.isEmpty?
       Padding(
-        padding:EdgeInsets.only(top: 30),
+        padding:const EdgeInsets.only(top: 30),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text('Welcome to Ecommerce',style: TextStyle(color: Colors.grey[600], fontSize: 30, fontFamily: 'Pacifico'),),
-            SizedBox(height: 50,),
-            SpinKitFadingCube(
+            const SizedBox(height: 50,),
+            const SpinKitFadingCube(
               size:140,
               color: Color(0Xff43db80)
             ),
@@ -71,9 +71,15 @@ class _HomePageState extends State<HomePage> {
           return GestureDetector(
             onTap: (){
               var product=items[index];
-              Navigator.of(context).push(MaterialPageRoute(builder:(context)=>ProductShow(),settings:RouteSettings(arguments:{product})));
+              Navigator.of(context).push(MaterialPageRoute(builder:(context)=>const ProductShow(),settings:RouteSettings(arguments:{product})));
             },
             child: Container(
+              padding: const EdgeInsets.all(5),
+              margin: const EdgeInsets.all(5),
+              decoration: BoxDecoration(
+                color:Colors.white,
+                borderRadius: BorderRadius.circular(5)
+              ), 
               child:Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -84,18 +90,12 @@ class _HomePageState extends State<HomePage> {
                   Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Text('item title',style:TextStyle(fontSize:17,fontWeight: FontWeight.w600)),
+                      const Text('item title',style:TextStyle(fontSize:17,fontWeight: FontWeight.w600)),
                       Text('item.description',style:TextStyle(fontSize:15,color: Colors.grey[600]))
                     ]
                   )
                 ]
               ),
-              padding: EdgeInsets.all(5),
-              margin: EdgeInsets.all(5),
-              decoration: BoxDecoration(
-                color:Colors.white,
-                borderRadius: BorderRadius.circular(5)
-              ), 
             ),
           );
         },

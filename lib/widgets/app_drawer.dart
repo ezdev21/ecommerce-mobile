@@ -24,45 +24,45 @@ class _AppDrawerState extends State<AppDrawer> {
         ListView(
           children: [
             ListTile(
-              title: Text('Home'),
-              leading: Icon(Icons.home),
+              title: const Text('Home'),
+              leading: const Icon(Icons.home),
               onTap: () => {
-                Navigator.of(context).push(MaterialPageRoute(builder: (context)=>HomePage()))
+                Navigator.of(context).push(MaterialPageRoute(builder: (context)=>const HomePage()))
               },
             ),
             ListTile(
-              title: Text('Sell'),
-              leading: Icon(Icons.add),
+              title: const Text('Sell'),
+              leading: const Icon(Icons.add),
               onTap: () => {
-                Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ProductCreate()))
+                Navigator.of(context).push(MaterialPageRoute(builder: (context)=>const ProductCreate()))
               },
             ),
             ListTile(
-              title: Text('Login'),
-              leading: Icon(Icons.login),
+              title: const Text('Login'),
+              leading: const Icon(Icons.login),
               onTap: () => {
-                Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Login()))
+                Navigator.of(context).push(MaterialPageRoute(builder: (context)=>const Login()))
               },
             ),
             ListTile(
-              title: Text('Register'),
-              leading: Icon(Icons.app_registration),
+              title: const Text('Register'),
+              leading: const Icon(Icons.app_registration),
               onTap: () => {
-                Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Register()))
+                Navigator.of(context).push(MaterialPageRoute(builder: (context)=>const Register()))
               },
             ),
             ListTile(
-              title: Text('Show'),
-              leading: Icon(Icons.add),
+              title: const Text('Show'),
+              leading: const Icon(Icons.add),
               onTap: () => {
-                Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ProductShow()))
+                Navigator.of(context).push(MaterialPageRoute(builder: (context)=>const ProductShow()))
               },
             ),
             ListTile(
-            title: Text('category'),
-            leading: Icon(Icons.category),
+            title: const Text('category'),
+            leading: const Icon(Icons.category),
             onTap: () => {
-              Navigator.of(context).push(MaterialPageRoute(builder: (context)=>CategoryShow()))
+              Navigator.of(context).push(MaterialPageRoute(builder: (context)=>const CategoryShow()))
             },
           )
           ],
@@ -70,25 +70,25 @@ class _AppDrawerState extends State<AppDrawer> {
         :ListView(
         children: [
           DrawerHeader(
+            decoration:const BoxDecoration(
+              color: Color(0Xff43db80)
+            ),
             child: Column(
               children: [
-                CircleAvatar(
+                const CircleAvatar(
                   backgroundColor: Colors.white,
                   radius: 30,
                 ),
-                SizedBox(height: 10,),
-                Text(auth.user!.name,style: TextStyle(color: Colors.white),),
-                Text(auth.user!.name,style: TextStyle(color: Colors.white),),
-                SizedBox(height: 10,),
+                const SizedBox(height: 10,),
+                Text(auth.user!.name,style: const TextStyle(color: Colors.white),),
+                Text(auth.user!.name,style: const TextStyle(color: Colors.white),),
+                const SizedBox(height: 10,),
               ],
             ),
-            decoration:BoxDecoration(
-              color: Color(0Xff43db80)
-            )
           ),
           ListTile(
-            title: Text('Logout'),
-            leading: Icon(Icons.logout),
+            title: const Text('Logout'),
+            leading: const Icon(Icons.logout),
             onTap: () => {
               Provider.of<AuthProvider>(context,listen: false).logout()
               //Navigator.of(context).push(MaterialPageRoute(builder: (context)=>HomePage()))

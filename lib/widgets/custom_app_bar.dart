@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
   PreferredSizeWidget CustomAppBar() {
     final searchController=TextEditingController();
     return AppBar(
-        backgroundColor: Color(0Xff43db80),
+        backgroundColor: const Color(0Xff43db80),
         title: TextField(
             controller: searchController,
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               labelText:'I am looking for...',
               fillColor:Colors.white,
               filled: true,
@@ -19,7 +19,7 @@ import 'package:flutter/material.dart';
             onPressed: (){
               //Navigator.of(context).push(MaterialPageRoute(builder:(context)=>SearchPage(),settings:RouteSettings(arguments:{searchController.text})));
             },
-            icon:Icon(Icons.search)
+            icon:const Icon(Icons.search)
           ),
         ]
       );

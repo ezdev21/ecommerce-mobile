@@ -11,14 +11,14 @@ class AuthProvider extends ChangeNotifier{
   late User? user;
   bool logged=false;
   String? token='';
-  final storage = new FlutterSecureStorage();
+  final storage = const FlutterSecureStorage();
 
   bool get authenticated => logged;
   User? get getUser => user;
   
   void register(Map creds) async{
     try{
-      var res=Dio().post('sanctum/register',data:creds);
+      Dio().post('sanctum/register',data:creds);
       showToast("success");
     }catch(e){
       showToast("error");
@@ -32,7 +32,7 @@ class AuthProvider extends ChangeNotifier{
      tryToken(token);
      logged=true;
     }catch(e){
-      
+     showToast("error"); 
     }
     notifyListeners();
   }
@@ -44,13 +44,13 @@ class AuthProvider extends ChangeNotifier{
     else{
       try{
         var res=await Dio().get('/user',options:Options(headers:{'Authorization':'Bearer $token'}));
-        this.logged=true;
-        this.user=User.fromJson(res.data);
-        this.token=token;
+        logged=true;
+        user=User.fromJson(res.data);
+        token=token;
         storeToken(token);
         notifyListeners(); 
       }catch(e){
-        
+        showToast("error"); 
       }
     }
   }
@@ -61,11 +61,11 @@ class AuthProvider extends ChangeNotifier{
 
   void logout() async{
     try{
-      var res=await Dio().get('/user/revoke',options:Options(headers:{'Authorization':'Bearer $token'}));
+      await Dio().get('/user/revoke',options:Options(headers:{'Authorization':'Bearer $token'}));
       cleanUp();
       notifyListeners(); 
     }catch(e){
-      
+     showToast("error");  
     }
   }
   
@@ -75,7 +75,7 @@ class AuthProvider extends ChangeNotifier{
       toastLength: Toast.LENGTH_LONG,
       gravity: ToastGravity.TOP,
       timeInSecForIosWeb: 3,
-      backgroundColor: status=="success"? Color(0Xff43db80) : Colors.red,
+      backgroundColor: status=="success"? const Color(0Xff43db80) : Colors.red,
       textColor: Colors.white,
       fontSize: 16.0
     );
@@ -89,7 +89,7 @@ class AuthProvider extends ChangeNotifier{
   }
   
   getDeviceInfo() async{
-    String device_name='';
+    String deviceName='';
     if(Platform.isAndroid){
       //DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
       //AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
@@ -100,8 +100,8 @@ class AuthProvider extends ChangeNotifier{
       //device_name=iosInfo.utsname.machine;
     }
     else{
-      device_name='unknown';
+      deviceName='unknown';
     }
-    return device_name;
+    return deviceName;
   }
 }

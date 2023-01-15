@@ -55,112 +55,110 @@ class _PasswordResetState extends State<PasswordReset> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: AppDrawer(),
+      drawer: const AppDrawer(),
       backgroundColor: Colors.grey[200],
       appBar: CustomAppBar(),
       body: Padding(
-        padding: EdgeInsets.only(top: 20),
-        child: Container(
-          child: Center(
-            child: !confirmed?
-            Container(
-              child: !emailSent?
-              Column(
-                children: [
-                  Text('Enter Your Email',style:TextStyle(fontSize:20)),
-                  SizedBox(height: 10),
-                  TextFormField(
-                  controller: emailController,
-                  decoration: InputDecoration(
-                    labelText: 'email',
-                    hintText: 'jhondoe@gmail.com',
-                    fillColor:Colors.white,
-                    filled:true,
-                    contentPadding: EdgeInsets.all(3),
-                    enabledBorder: OutlineInputBorder(
-                      borderSide:BorderSide(width: 2,color: Colors.grey.shade400),
-                      borderRadius:BorderRadius.circular(5)
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide:BorderSide(width: 2,color: Color(0Xff43db80)),
-                      borderRadius:BorderRadius.circular(5)
-                    ),
+        padding: const EdgeInsets.only(top: 20),
+        child: Center(
+          child: !confirmed?
+          Container(
+            child: !emailSent?
+            Column(
+              children: [
+                const Text('Enter Your Email',style:TextStyle(fontSize:20)),
+                const SizedBox(height: 10),
+                TextFormField(
+                controller: emailController,
+                decoration: InputDecoration(
+                  labelText: 'email',
+                  hintText: 'jhondoe@gmail.com',
+                  fillColor:Colors.white,
+                  filled:true,
+                  contentPadding: const EdgeInsets.all(3),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide:BorderSide(width: 2,color: Colors.grey.shade400),
+                    borderRadius:BorderRadius.circular(5)
                   ),
-                )
-                ],
-              )
-              :Column(
-                children: [
-                  Text('Enter Confirmation Code send to ${emailController.text}',style:TextStyle(fontSize:20)),
-                  SizedBox(height: 10),
-                  TextFormField(
-                  controller: confirmationCodeController,
-                  decoration: InputDecoration(
-                    labelText: 'code',
-                    hintText: '',
-                    fillColor:Colors.white,
-                    filled:true,
-                    contentPadding: EdgeInsets.all(3),
-                    enabledBorder: OutlineInputBorder(
-                      borderSide:BorderSide(width: 2,color: Colors.grey.shade400),
-                      borderRadius:BorderRadius.circular(5)
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide:BorderSide(width: 2,color: Color(0Xff43db80)),
-                      borderRadius:BorderRadius.circular(5)
-                    ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide:const BorderSide(width: 2,color: Color(0Xff43db80)),
+                    borderRadius:BorderRadius.circular(5)
                   ),
                 ),
-                ],
               )
-            ) 
+              ],
+            )
             :Column(
               children: [
-              Text('Enter a new password',style: TextStyle(fontSize: 18),),
-              SizedBox(height:10),  
-              TextFormField(
-                controller: passwordController,
-                obscureText:true,
+                Text('Enter Confirmation Code send to ${emailController.text}',style:const TextStyle(fontSize:20)),
+                const SizedBox(height: 10),
+                TextFormField(
+                controller: confirmationCodeController,
                 decoration: InputDecoration(
-                  labelText: 'password',
-                  hintText: '********',
+                  labelText: 'code',
+                  hintText: '',
                   fillColor:Colors.white,
                   filled:true,
-                  contentPadding: EdgeInsets.all(3),
+                  contentPadding: const EdgeInsets.all(3),
                   enabledBorder: OutlineInputBorder(
                     borderSide:BorderSide(width: 2,color: Colors.grey.shade400),
                     borderRadius:BorderRadius.circular(5)
                   ),
                   focusedBorder: OutlineInputBorder(
-                    borderSide:BorderSide(width: 2,color: Color(0Xff43db80)),
+                    borderSide:const BorderSide(width: 2,color: Color(0Xff43db80)),
                     borderRadius:BorderRadius.circular(5)
                   ),
                 ),
               ),
-              SizedBox(height:10),
-              Text('confirm a new password',style: TextStyle(fontSize: 18),),
-              SizedBox(height:10), 
-              TextFormField(
-                controller: passwordConfirmationController,
-                obscureText:true,
-                decoration: InputDecoration(
-                  labelText: 'password confirmation',
-                  hintText: '********',
-                  fillColor:Colors.white,
-                  filled:true,
-                  contentPadding: EdgeInsets.all(3),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide:BorderSide(width: 2,color: Colors.grey.shade400),
-                    borderRadius:BorderRadius.circular(5)
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide:BorderSide(width: 2,color: Color(0Xff43db80)),
-                    borderRadius:BorderRadius.circular(5)
-                  ),
+              ],
+            )
+          ) 
+          :Column(
+            children: [
+            const Text('Enter a new password',style: TextStyle(fontSize: 18),),
+            const SizedBox(height:10),  
+            TextFormField(
+              controller: passwordController,
+              obscureText:true,
+              decoration: InputDecoration(
+                labelText: 'password',
+                hintText: '********',
+                fillColor:Colors.white,
+                filled:true,
+                contentPadding: const EdgeInsets.all(3),
+                enabledBorder: OutlineInputBorder(
+                  borderSide:BorderSide(width: 2,color: Colors.grey.shade400),
+                  borderRadius:BorderRadius.circular(5)
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide:const BorderSide(width: 2,color: Color(0Xff43db80)),
+                  borderRadius:BorderRadius.circular(5)
                 ),
               ),
-              ], 
             ),
+            const SizedBox(height:10),
+            const Text('confirm a new password',style: TextStyle(fontSize: 18),),
+            const SizedBox(height:10), 
+            TextFormField(
+              controller: passwordConfirmationController,
+              obscureText:true,
+              decoration: InputDecoration(
+                labelText: 'password confirmation',
+                hintText: '********',
+                fillColor:Colors.white,
+                filled:true,
+                contentPadding: const EdgeInsets.all(3),
+                enabledBorder: OutlineInputBorder(
+                  borderSide:BorderSide(width: 2,color: Colors.grey.shade400),
+                  borderRadius:BorderRadius.circular(5)
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide:const BorderSide(width: 2,color: Color(0Xff43db80)),
+                  borderRadius:BorderRadius.circular(5)
+                ),
+              ),
+            ),
+            ], 
           ),
         ),
       ),

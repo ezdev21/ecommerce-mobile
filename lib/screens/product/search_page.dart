@@ -31,7 +31,7 @@ class _SearchPageState extends State<SearchPage> {
       backgroundColor: Colors.grey[200],
       appBar: CustomAppBar(),
       body: Container(
-        child: items.length==0 ?
+        child: items.isEmpty ?
         const Center(
           child: SpinKitFadingCube(
             size:140,
@@ -42,6 +42,12 @@ class _SearchPageState extends State<SearchPage> {
           itemCount: items.length,
           itemBuilder: (context,index){
             return Container(
+              padding: const EdgeInsets.all(5),
+              margin: const EdgeInsets.all(5),
+              decoration: BoxDecoration(
+                color:Colors.white,
+                borderRadius: BorderRadius.circular(5)
+              ), 
               child:Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -49,18 +55,12 @@ class _SearchPageState extends State<SearchPage> {
                   Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Text('item title',style:TextStyle(fontSize:17,fontWeight: FontWeight.w600)),
+                      const Text('item title',style:TextStyle(fontSize:17,fontWeight: FontWeight.w600)),
                       Text('item.description',style:TextStyle(fontSize:15,color: Colors.grey[600]))
                     ]
                   )
                 ]
               ),
-              padding: EdgeInsets.all(5),
-              margin: EdgeInsets.all(5),
-              decoration: BoxDecoration(
-                color:Colors.white,
-                borderRadius: BorderRadius.circular(5)
-              ), 
             );
           },
         )

@@ -21,136 +21,134 @@ class _ProductShowState extends State<ProductShow> {
     return Scaffold(
       backgroundColor: Colors.grey[200],
       appBar: CustomAppBar(),
-      body: Container(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Image.network(
-              //'${product.image}'
-              'https://media.istockphoto.com/id/1405163092/photo/3d-render-of-sport-running-shoe-isolated-on-pastel-background-3d-background-minimal-scene.jpg?s=612x612&w=is&k=20&c=55ZC86AZBWD60IbclH2UnKj-93DpR34dDVI9HXzCpFo='
-              ),
-            SizedBox(height: 10),
-            Container(
-              padding: EdgeInsets.all(5),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text('new nike shoes',style: TextStyle(fontSize: 18,fontWeight: FontWeight.w600)),
-                  Text('new nike shoes',style: TextStyle(fontSize: 16,color: Colors.grey[700])),
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                    IconButton(
-                      onPressed: (){
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Image.network(
+            //'${product.image}'
+            'https://media.istockphoto.com/id/1405163092/photo/3d-render-of-sport-running-shoe-isolated-on-pastel-background-3d-background-minimal-scene.jpg?s=612x612&w=is&k=20&c=55ZC86AZBWD60IbclH2UnKj-93DpR34dDVI9HXzCpFo='
+            ),
+          const SizedBox(height: 10),
+          Container(
+            padding: const EdgeInsets.all(5),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text('new nike shoes',style: TextStyle(fontSize: 18,fontWeight: FontWeight.w600)),
+                Text('new nike shoes',style: TextStyle(fontSize: 16,color: Colors.grey[700])),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                  IconButton(
+                    onPressed: (){
+                    // if(authenticated){
+                    //   setState(() {
+                    //   if(disliked){
+                    //     disliked=false;
+                    //   }
+                    //   liked=!liked;
+                    //   });
+                    //   likeProduct();
+                    // }
+                    // else{
+                      Provider.of<ProductProvider>(context,listen: false).openDialog('like',context);
+                    // }
+                    },
+                    icon: const Icon(Icons.thumb_up)
+                  ),
+                  //Text('${product.totalLikes}'),
+                  const SizedBox(width: 20,),
+                  IconButton(
+                    onPressed: (){
                       // if(authenticated){
                       //   setState(() {
-                      //   if(disliked){
-                      //     disliked=false;
-                      //   }
-                      //   liked=!liked;
+                      //     if(liked){
+                      //     liked=false;
+                      //     }
+                      //     disliked=!disliked;
                       //   });
-                      //   likeProduct();
+                      //   dislikeProduct();
                       // }
                       // else{
-                        Provider.of<ProductProvider>(context,listen: false).openDialog('like',context);
-                      // }
-                      },
-                      icon: Icon(Icons.thumb_up)
-                    ),
-                    //Text('${product.totalLikes}'),
-                    SizedBox(width: 20,),
-                    IconButton(
-                      onPressed: (){
-                        // if(authenticated){
-                        //   setState(() {
-                        //     if(liked){
-                        //     liked=false;
-                        //     }
-                        //     disliked=!disliked;
-                        //   });
-                        //   dislikeProduct();
-                        // }
-                        // else{
-                          Provider.of<ProductProvider>(context,listen: false).openDialog('dislike',context);
-                        //}
-                      },
-                      icon: Icon(Icons.thumb_down)
-                    ),
-                    //Text('${product.totalDislikes}'),
-                    SizedBox(width: 20,),
-                    RatingBar.builder(
-                      minRating: 1,
-                      maxRating: 5,
-                      initialRating: Provider.of<ProductProvider>(context,listen: false).initialRating(),
-                      allowHalfRating: true,
-                      itemSize: 30,
-                      onRatingUpdate: (value) {},
-                      itemBuilder: (context, index) {
-                        return Icon(Icons.star,color: Colors.amber,);
+                        Provider.of<ProductProvider>(context,listen: false).openDialog('dislike',context);
+                      //}
+                    },
+                    icon: const Icon(Icons.thumb_down)
+                  ),
+                  //Text('${product.totalDislikes}'),
+                  const SizedBox(width: 20,),
+                  RatingBar.builder(
+                    minRating: 1,
+                    maxRating: 5,
+                    initialRating: Provider.of<ProductProvider>(context,listen: false).initialRating(),
+                    allowHalfRating: true,
+                    itemSize: 30,
+                    onRatingUpdate: (value) {},
+                    itemBuilder: (context, index) {
+                      return const Icon(Icons.star,color: Colors.amber,);
+                    }
+                  )
+                ],
+                ),
+                const Text('Recommended Products',style: TextStyle(fontSize: 18,fontWeight: FontWeight.w600)),
+                SingleChildScrollView(
+                  scrollDirection: Axis.vertical,
+                  child: ListView.builder(
+                      itemCount: recommendedProducts.length,
+                      itemBuilder: (context,index){
+                        return Container(
+                          padding: const EdgeInsets.symmetric(vertical: 5),
+                          child: Row(
+                            crossAxisAlignment:CrossAxisAlignment.start,
+                            children: [
+                              Image.network(
+                                width:MediaQuery.of(context).size.width/2,
+                                'https://media.istockphoto.com/id/1405163092/photo/3d-render-of-sport-running-shoe-isolated-on-pastel-background-3d-background-minimal-scene.jpg?s=612x612&w=is&k=20&c=55ZC86AZBWD60IbclH2UnKj-93DpR34dDVI9HXzCpFo='
+                              ),
+                              const SizedBox(width: 5,),
+                              Column(
+                                children: [
+                                  const Text('new nike shoes',style: TextStyle(fontSize: 18,fontWeight: FontWeight.w600)),
+                                  Text('new nike shoes',style: TextStyle(fontSize: 16,color: Colors.grey[700])),
+                                  Row(
+                                    children: [
+                                      IconButton(
+                                        color: const Color(0Xff43db80),
+                                        onPressed:(){
+                                          Provider.of<ProductProvider>(context,listen: false).watchLater(); 
+                                        },
+                                        icon:const Icon(Icons.remove_red_eye) 
+                                      ),
+                                      const SizedBox(width:10),
+                                      IconButton(
+                                        color: const Color(0Xff43db80),
+                                        onPressed:(){
+                                          Provider.of<ProductProvider>(context,listen: false).addToFavourite(); 
+                                        },
+                                        icon:const Icon(Icons.heart_broken) 
+                                      ),
+                                      const SizedBox(width:10),
+                                      IconButton(
+                                        color: const Color(0Xff43db80),
+                                        onPressed:(){
+                                          Provider.of<ProductProvider>(context,listen: false).addToCart(); 
+                                        },
+                                        icon:const Icon(Icons.shop) 
+                                      ),
+                                    ],
+                                  )
+                                ],
+                              )
+                            ],
+                          ),
+                        );
                       }
-                    )
-                  ],
-                  ),
-                  Text('Recommended Products',style: TextStyle(fontSize: 18,fontWeight: FontWeight.w600)),
-                  SingleChildScrollView(
-                    scrollDirection: Axis.vertical,
-                    child: ListView.builder(
-                        itemCount: recommendedProducts.length,
-                        itemBuilder: (context,index){
-                          return Container(
-                            padding: EdgeInsets.symmetric(vertical: 5),
-                            child: Row(
-                              crossAxisAlignment:CrossAxisAlignment.start,
-                              children: [
-                                Image.network(
-                                  width:MediaQuery.of(context).size.width/2,
-                                  'https://media.istockphoto.com/id/1405163092/photo/3d-render-of-sport-running-shoe-isolated-on-pastel-background-3d-background-minimal-scene.jpg?s=612x612&w=is&k=20&c=55ZC86AZBWD60IbclH2UnKj-93DpR34dDVI9HXzCpFo='
-                                ),
-                                SizedBox(width: 5,),
-                                Column(
-                                  children: [
-                                    Text('new nike shoes',style: TextStyle(fontSize: 18,fontWeight: FontWeight.w600)),
-                                    Text('new nike shoes',style: TextStyle(fontSize: 16,color: Colors.grey[700])),
-                                    Row(
-                                      children: [
-                                        IconButton(
-                                          color: Color(0Xff43db80),
-                                          onPressed:(){
-                                            Provider.of<ProductProvider>(context,listen: false).watchLater(); 
-                                          },
-                                          icon:Icon(Icons.remove_red_eye) 
-                                        ),
-                                        SizedBox(width:10),
-                                        IconButton(
-                                          color: Color(0Xff43db80),
-                                          onPressed:(){
-                                            Provider.of<ProductProvider>(context,listen: false).addToFavourite(); 
-                                          },
-                                          icon:Icon(Icons.heart_broken) 
-                                        ),
-                                        SizedBox(width:10),
-                                        IconButton(
-                                          color: Color(0Xff43db80),
-                                          onPressed:(){
-                                            Provider.of<ProductProvider>(context,listen: false).addToCart(); 
-                                          },
-                                          icon:Icon(Icons.shop) 
-                                        ),
-                                      ],
-                                    )
-                                  ],
-                                )
-                              ],
-                            ),
-                          );
-                        }
-                      ),
-                  ),
-                ]
-              ),
-            )
-          ],
-        ),
+                    ),
+                ),
+              ]
+            ),
+          )
+        ],
       ),
     );
   }
