@@ -1,4 +1,17 @@
-**ongoing project**
+### Ecommerce Mobile App
+
+you can remove the linux, macos, windows and web folders. they are used to run flutter in the browser
+
+to run flutter in the browser
+
+`$ flutter channel beta`
+
+`$ flutter upgrade`
+
+`$ flutter config --enable-web`
+
+`$ flutter run -d web-server`
+
 ![Screenshot from 2022-11-11 18-46-44](https://user-images.githubusercontent.com/78965149/201472916-29294a4b-c825-4b38-ae01-44379f23efaa.png)
 ![Screenshot from 2022-12-24 17-50-07](https://user-images.githubusercontent.com/78965149/209441561-56b6e421-da96-456b-b29c-f88cfcba869f.png)
 ![Screenshot from 2022-12-24 17-51-11](https://user-images.githubusercontent.com/78965149/209441562-a340cf2a-dba9-448d-b531-47728daf4eeb.png)
