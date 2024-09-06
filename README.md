@@ -38,4 +38,4 @@ Distributed under the MIT License.
 
 <!-- CONTACT -->
 ## Contact
-Contact me here or by email ezra4543@gmail.com
+Contact me here or by email ezradev21@gmail.com
